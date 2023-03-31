@@ -92,11 +92,12 @@ library PlayerStorageLib {
         require(s.owners[_id] == msg.sender);
         require(_to != address(0), "_to cannot be zero address");    
         s.owners[_id] = _to;
-        for (uint256 i = 0; i < s.balances[msg.sender]; i++) {
+        for (uint256 i = 0; i < s.balances[msg.sender];) {
             if (s.addressToPlayers[msg.sender][i] == _id) {
                 delete s.addressToPlayers[msg.sender][i];
                 break;
             }
+            unchecked { i += 1; }
         }
         s.balances[msg.sender]--;
         s.balances[_to]++;
