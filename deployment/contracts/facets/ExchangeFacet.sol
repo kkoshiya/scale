@@ -128,8 +128,10 @@ contract ExchangeFacet {
         emit Purchase(msg.sender, _listingId);
     }
 
-    function getListing(address _address) public view returns (uint256[] memory) {
-        return ExchangeStorageLib._getListing(_address);
+    function getListing(uint256 _listingId) public view returns (address payable seller, uint256 playerId, uint256 price) {
+        ExStorage storage e = ExchangeStorageLib.diamondStorageEx();
+        PlayerListing storage listing = e.listings[_listingId];
+        return (listing.seller, listing.playerId, listing.price);
     }
 
 
