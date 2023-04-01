@@ -75,8 +75,8 @@ library ExchangeStorageLib {
     function _createListing(uint256 _id, uint256 _price) internal {
         PlayerStorage storage s = diamondStoragePlayer();
         ExStorage storage e = diamondStorageEx();
-        require(s.owners[_id] == msg.sender); //ownerOf
-        require(s.players[_id].status == 0); //make sure player is idle
+        require(s.owners[_id] == msg.sender, "Not owner of player"); //ownerOf
+        require(s.players[_id].status == 0, "Player is not idle"); //make sure player is idle
         e.listings[_id] = PlayerListing(payable(msg.sender), _id, _price);
 
         for (uint256 i = 0; i < s.balances[msg.sender]; i++) {
@@ -92,7 +92,7 @@ library ExchangeStorageLib {
         PlayerStorage storage s = diamondStoragePlayer();
         ExStorage storage e = diamondStorageEx();
         CoinStorage storage c = diamondStorageCoin(); 
-        require(c.goldBalance[msg.sender] >= e.listings[_listingId].price); //check if buyer has enough value
+        require(c.goldBalance[msg.sender] >= e.listings[_listingId].price, "Insufficient funds"); //check if buyer has enough value
         s.owners[e.listings[_listingId].playerId] = msg.sender; //transfer ownership
         s.addressToPlayers[msg.sender].push(e.listings[_listingId].playerId); //add id to players array
         c.goldBalance[msg.sender] -= e.listings[_listingId].price; //deduct balance from buys
