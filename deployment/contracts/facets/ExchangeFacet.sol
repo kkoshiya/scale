@@ -125,8 +125,8 @@ contract ExchangeFacet {
         emit Purchase(msg.sender, _listingId);
     }
 
-    function _getListing(address _address) public view {
-        ExchangeStorageLib._getListing(_address);
+    function getListing(address _address) public view returns (uint256[] memory) {
+        return ExchangeStorageLib._getListing(_address);
     }
 
 
