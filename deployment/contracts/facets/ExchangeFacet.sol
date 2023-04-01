@@ -79,7 +79,9 @@ library ExchangeStorageLib {
         require(s.players[_id].status == 0, "Player is not idle"); //make sure player is idle
         e.listings[_id] = PlayerListing(payable(msg.sender), _id, _price);
 
-        for (uint256 i = 0; i < s.balances[msg.sender]; i++) {
+        uint256 balances = s.balances[msg.sender];
+
+        for (uint256 i; i < balances; ++i) {
             if (s.addressToPlayers[msg.sender][i] == _id) {
                 delete s.addressToPlayers[msg.sender][i];
                 break;
