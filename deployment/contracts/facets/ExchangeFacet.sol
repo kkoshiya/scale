@@ -83,6 +83,7 @@ library ExchangeStorageLib {
 
         for (uint256 i; i < balances; ++i) {
             if (s.addressToPlayers[msg.sender][i] == _id) {
+                delete s.owners[_id];
                 delete s.addressToPlayers[msg.sender][i];
                 break;
             }
