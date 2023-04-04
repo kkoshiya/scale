@@ -37,8 +37,12 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
+                <Link passHref href={"/marketplace"}>Marketplace</Link>
+              </li>
+              <li>
                 <Link href={"/leaderboard"}>Leaderboard</Link>
               </li>
+              
               <li>
                 <Link href={"/about"}>About</Link>
               </li>
@@ -62,6 +66,10 @@ export default function Navbar() {
               <Link passHref href={"/mint"}>
                 Mint
               </Link>
+            </li>
+
+            <li className=" rounded-lg  hover:bg-gray-600 ">
+              <Link passHref href={"/marketplace"}>Marketplace</Link>
             </li>
 
             <li className=" rounded-lg  hover:bg-gray-600 ">
