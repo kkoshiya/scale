@@ -7,7 +7,7 @@ export default function MarketplacePage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="relative w-fit mb-auto min-h-fit flex flex-col items-center justify-center mx-auto  h-[78vh]"
+      className="relative w-fit mb-auto min-h-fit flex flex-col items-center justify-center mx-auto"
     >
       {" "}
       {/* <div>

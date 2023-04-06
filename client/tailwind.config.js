@@ -1,4 +1,27 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin');
+
+// Flip card utilities
+const flipCardUtil = plugin(function ({addUtilities}) {
+  addUtilities({
+    '.rotate-y-180' : {
+      transform : 'rotateY(180deg)'
+    },
+    '.backface-visible' : {
+      'backface-visibility': 'visible'
+    },
+    '.backface-hidden' : {
+      'backface-visibility': 'hidden'
+    },
+    '.flip' : {
+      transform: 'rotateY(var( — rotate-y, 0))'
+    },
+    '.preserve-3d' : {
+      'transform-style': 'preserve-3d'
+    },
+  })
+})
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -32,7 +55,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [flipCardUtil, require("daisyui")],
   daisyui: {
     styled: true,
     themes: [
