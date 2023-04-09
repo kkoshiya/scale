@@ -4,7 +4,6 @@ export default function Marketplace() {
     return (
     <div className="grid grid-cols-3 pt-16 px-36 gap-20 relative">
         <StorePlayerCard/>
-        {/* <StorePlayerCard/>
         <StorePlayerCard/>
         <StorePlayerCard/>
         <StorePlayerCard/>
@@ -14,6 +13,7 @@ export default function Marketplace() {
         <StorePlayerCard/>
         <StorePlayerCard/>
         <StorePlayerCard/>
-        <StorePlayerCard/> */}
+        <StorePlayerCard/>
+        <StorePlayerCard/>
     </div>);
 }

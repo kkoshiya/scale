@@ -44,7 +44,7 @@ library ExchangeStorageLib {
 
     struct ExStorage {
         mapping(uint256 => PlayerListing) listings;
-        mapping(address => uint256[]) addressToListiongs;
+        mapping(address => uint256[]) addressToListings;
     }
 
     struct CoinStorage {
@@ -72,7 +72,7 @@ library ExchangeStorageLib {
         }
     }
 
-    function _crateListing(uint256 _id, uint256 _price) internal {
+    function _createListing(uint256 _id, uint256 _price) internal {
         PlayerStorage storage s = diamondStoragePlayer();
         ExStorage storage e = diamondStorageEx();
         require(s.owners[_id] == msg.sender); //ownerOf
@@ -103,7 +103,7 @@ library ExchangeStorageLib {
 
     function _getListing(address _address) internal view returns (uint256[] memory) {
         ExStorage storage e = diamondStorageEx();
-        return e.addressToListiongs[_address];
+        return e.addressToListings[_address];
     }
 
 
@@ -115,7 +115,7 @@ contract ExchangeFacet {
     event List(address indexed _from, uint256 indexed _playerId, uint256 _price);
     event Purchase(address indexed _to, uint256 _id);
 
-    function crateListing(uint256 _id, uint256 _price) public {
+    function createListing(uint256 _id, uint256 _price) public {
         ExchangeStorageLib._crateListing(_id, _price);
         emit List(msg.sender, _id, _price);
     }
@@ -128,10 +128,6 @@ contract ExchangeFacet {
     function _getListing(address _address) public view {
         ExchangeStorageLib._getListing(_address);
     }
-
-
- 
-
 
     //function supportsInterface(bytes4 _interfaceID) external view returns (bool) {}
 }

@@ -15,7 +15,6 @@ import { TfiEye } from "react-icons/tfi";
 import { RiCoinLine } from "react-icons/ri";
 import { HiArrowSmRight, HiArrowSmLeft } from "react-icons/hi";
 
-import Link from "next/link";
 import InventoryModal from "./inventoryModal";
 export default function PlayerCard() {
   const { address } = useAccount();
