@@ -193,7 +193,7 @@ library StorageLib {
 
     function _randomMainArena (uint _tokenId) internal view returns(uint256) {
         PlayerStorage storage s = diamondStoragePlayer();
-        return uint256(keccak256(abi.encodePacked(block.timestamp + block.prevrandao + s.playerCount + _tokenId)));
+        return uint256(keccak256(abi.encodePacked(block.timestamp + s.playerCount + _tokenId)));
     }
 
 

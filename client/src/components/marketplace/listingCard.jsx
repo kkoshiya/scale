@@ -1,13 +1,13 @@
-import contractStore from "@/store/contractStore";
-import { useAccount } from "wagmi";
-import Diamond from "@/contracts/data/diamond.json";
+import Diamond from "../../../../deployment/artifacts/HardhatDiamondABI.sol/DIAMOND-1-HARDHAT.json";
 import { ethers } from "ethers";
 
 import { useEffect, useState } from "react";
 import ReactCardFlip from 'react-card-flip';
 
-export default function StorePlayerCard(props) {
-  const { address } = props;
+export default function ListingCard(props) {
+  const { listingAddress } = props;
+  const [listing, setListing] = useState(null);
+  const [player, setPlayer] = useState(null);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -16,16 +16,21 @@ export default function StorePlayerCard(props) {
       // Get signer
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
-        "0xfE3Acd5a20Ca97DE7C7c9540F33BF54229D925E3",
+        process.env.NEXT_PUBLIC_DIAMOND_ADDRESS,
         Diamond.abi,
         signer
       );
-      const listing = await contract.getListing(address);
-      const player = listing.playerId;
-      const price = listing.price;
+
+      const listingResponse = await contract._getListing(listingAddress);
+      console.log(listingResponse);
+      setListing(await listingResponse);
+
+      const playerResponse = await contract.getPlayer(listing.playerId);
+      console.log(playerResponse);
+      setPlayer(await playerResponse);
     };
     loadContract();
-  }, [address]);
+  }, [index, listingAddress]);
 
   const  [flip, setFlip] = useState(false);
   return (
@@ -49,17 +54,22 @@ export default function StorePlayerCard(props) {
     <div className="back pt-5 pb-0" onClick={()=>setFlip(!flip)}> 
       <div tabIndex={0} className="card card-compact w-80 h-102 shadow-xl p-5" data-theme="scroll">
         <h2 className="font-bold">Attributes</h2>
-        <div className="grid gap-x-48 grid-cols-2">
-          <div>Status: </div>
-          <div>Idle</div>
-          <div>Attack: </div>
-          <div>35</div>
-          <div>HP: </div>
-          <div>200</div>
-          <div>Items: </div>
-          <div>Sword</div>
-          <div>Wins: </div>
-          <div>12</div>
+        <div className="grid gap-x-48">
+            <div> Level: {player.level} </div>
+            <div> XP: {player.xp} </div>
+            <div> Status: {player.status} </div>
+            <div> Strength: {player.strength} </div>
+            <div> Health: {player.health} </div>
+            <div> Magic: {player.magic} </div>
+            <div> Mana: {player.mana} </div>
+            <div> Agility: {player.agility} </div>
+            <div> Luck: {player.luck} </div>
+            <div> Wisdom: {player.wisdom} </div>
+            <div> Haki: {player.haki} </div>
+            <div> Perception: {player.perception} </div>            
+            <div> Defense: {player.defense} </div>
+            <div> Name: {player.name} </div>
+            <div> Gender: {player.gender ? "male" : "female"} </div>
         </div>
       </div>
     </div>

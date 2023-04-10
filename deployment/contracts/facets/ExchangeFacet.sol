@@ -116,7 +116,7 @@ contract ExchangeFacet {
     event Purchase(address indexed _to, uint256 _id);
 
     function createListing(uint256 _id, uint256 _price) public {
-        ExchangeStorageLib._crateListing(_id, _price);
+        ExchangeStorageLib._createListing(_id, _price);
         emit List(msg.sender, _id, _price);
     }
 
@@ -125,7 +125,7 @@ contract ExchangeFacet {
         emit Purchase(msg.sender, _listingId);
     }
 
-    function _getListing(address _address) public view {
+    function getListing(address _address) public view {
         ExchangeStorageLib._getListing(_address);
     }
 
