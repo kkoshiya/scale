@@ -44,7 +44,7 @@ library ExchangeStorageLib {
 
     struct ExStorage {
         mapping(uint256 => PlayerListing) listings;
-        mapping(address => uint256[]) addressToListiongs;
+        mapping(address => uint256[]) addressToListings;
     }
 
     struct CoinStorage {
@@ -72,15 +72,18 @@ library ExchangeStorageLib {
         }
     }
 
-    function _crateListing(uint256 _id, uint256 _price) internal {
+    function _createListing(uint256 _id, uint256 _price) internal {
         PlayerStorage storage s = diamondStoragePlayer();
         ExStorage storage e = diamondStorageEx();
-        require(s.owners[_id] == msg.sender); //ownerOf
-        require(s.players[_id].status == 0); //make sure player is idle
+        require(s.owners[_id] == msg.sender, "Not owner of player"); //ownerOf
+        require(s.players[_id].status == 0, "Player is not idle"); //make sure player is idle
         e.listings[_id] = PlayerListing(payable(msg.sender), _id, _price);
 
-        for (uint256 i = 0; i < s.balances[msg.sender]; i++) {
+        uint256 balances = s.balances[msg.sender];
+
+        for (uint256 i; i < balances; ++i) {
             if (s.addressToPlayers[msg.sender][i] == _id) {
+                delete s.owners[_id];
                 delete s.addressToPlayers[msg.sender][i];
                 break;
             }
@@ -92,7 +95,7 @@ library ExchangeStorageLib {
         PlayerStorage storage s = diamondStoragePlayer();
         ExStorage storage e = diamondStorageEx();
         CoinStorage storage c = diamondStorageCoin(); 
-        require(c.goldBalance[msg.sender] >= e.listings[_listingId].price); //check if buyer has enough value
+        require(c.goldBalance[msg.sender] >= e.listings[_listingId].price, "Insufficient funds"); //check if buyer has enough value
         s.owners[e.listings[_listingId].playerId] = msg.sender; //transfer ownership
         s.addressToPlayers[msg.sender].push(e.listings[_listingId].playerId); //add id to players array
         c.goldBalance[msg.sender] -= e.listings[_listingId].price; //deduct balance from buys
@@ -103,7 +106,7 @@ library ExchangeStorageLib {
 
     function _getListing(address _address) internal view returns (uint256[] memory) {
         ExStorage storage e = diamondStorageEx();
-        return e.addressToListiongs[_address];
+        return e.addressToListings[_address];
     }
 
 
@@ -115,8 +118,8 @@ contract ExchangeFacet {
     event List(address indexed _from, uint256 indexed _playerId, uint256 _price);
     event Purchase(address indexed _to, uint256 _id);
 
-    function crateListing(uint256 _id, uint256 _price) public {
-        ExchangeStorageLib._crateListing(_id, _price);
+    function createListing(uint256 _id, uint256 _price) public {
+        ExchangeStorageLib._createListing(_id, _price);
         emit List(msg.sender, _id, _price);
     }
 
@@ -125,8 +128,10 @@ contract ExchangeFacet {
         emit Purchase(msg.sender, _listingId);
     }
 
-    function _getListing(address _address) public view {
-        ExchangeStorageLib._getListing(_address);
+    function getListing(uint256 _listingId) public view returns (address payable seller, uint256 playerId, uint256 price) {
+        ExStorage storage e = ExchangeStorageLib.diamondStorageEx();
+        PlayerListing storage listing = e.listings[_listingId];
+        return (listing.seller, listing.playerId, listing.price);
     }
 
 
