@@ -21,7 +21,7 @@ export default function ListingCard(props) {
         signer
       );
 
-      const listingResponse = await contract._getListing(listingAddress);
+      const listingResponse = await contract._getListing("hi");
       console.log(listingResponse);
       setListing(await listingResponse);
 
@@ -55,7 +55,7 @@ export default function ListingCard(props) {
       <div tabIndex={0} className="card card-compact w-80 h-102 shadow-xl p-5" data-theme="scroll">
         <h2 className="font-bold">Attributes</h2>
         <div className="grid gap-x-48">
-            <div> Level: {player.level} </div>
+            {/* <div> Level: {player.level} </div>
             <div> XP: {player.xp} </div>
             <div> Status: {player.status} </div>
             <div> Strength: {player.strength} </div>
@@ -69,7 +69,7 @@ export default function ListingCard(props) {
             <div> Perception: {player.perception} </div>            
             <div> Defense: {player.defense} </div>
             <div> Name: {player.name} </div>
-            <div> Gender: {player.gender ? "male" : "female"} </div>
+            <div> Gender: {player.gender ? "male" : "female"} </div> */}
         </div>
       </div>
     </div>
