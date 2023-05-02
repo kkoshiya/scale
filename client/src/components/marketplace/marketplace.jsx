@@ -7,24 +7,18 @@ import  { contractStore } from "@/store/contractStore";
 export default function Marketplace() {
     const [listings, setListings] = useState([]);
 
-    useEffect(() => {
-        const loadListings = async () => {
-          const contract = contractStore((state) => state.diamond);
+    const contract = contractStore((state) => state.diamond);
       
-          // Call the getAllListings function
-          const allListings = await contract.getAllListings();
+    // Call the getAllListings function
+    const allListings = contract.getAllListings();
       
-          // Fetch player details for each listing and store them in the state
-          const playerListings = [];
-          for (const listingId of allListings) {
-            const { seller, playerId, price } = await contract.getListing(listingId);
-            playerListings.push({ listingId, seller, playerId, price });
-          }
-          setListings(playerListings);
-        };
-      
-        loadListings();
-      }, []);
+      // Fetch player details for each listing and store them in the state
+      const playerListings = [];
+      for (const listingId of allListings) {
+        const { seller, playerId, price } = contract.getListing(listingId);
+        playerListings.push({ listingId, seller, playerId, price });
+      }
+      setListings(playerListings);
       
 
     return (
