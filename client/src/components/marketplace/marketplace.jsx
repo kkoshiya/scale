@@ -2,21 +2,14 @@ import { ethers } from 'ethers';
 
 import ListingCard from "./listingCard";
 import { useEffect, useState } from 'react';
-import Diamond from "../../../../deployment/artifacts/hardhat-diamond-abi/HardhatDiamondABI.sol/DIAMOND-1-HARDHAT.json";
-
+import  { contractStore } from "@/store/contractStore";
 
 export default function Marketplace() {
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
         const loadListings = async () => {
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          const signer = provider.getSigner();
-          const contract = new ethers.Contract(
-            process.env.NEXT_PUBLIC_DIAMOND_ADDRESS,
-            Diamond.ABI,
-            signer
-          );
+          const contract = contractStore((state) => state.diamond);
       
           // Call the getAllListings function
           const allListings = await contract.getAllListings();
