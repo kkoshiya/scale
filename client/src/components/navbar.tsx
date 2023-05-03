@@ -40,6 +40,9 @@ export default function Navbar() {
                 <Link href={"/leaderboard"}>Leaderboard</Link>
               </li>
               <li>
+                <Link passHref href={"/marketplace"}>Marketplace</Link>
+              </li>
+              <li>
                 <Link
                   href={
                     "https://scroll-kingdoms-1.gitbook.io/game-play/game-play"
@@ -73,6 +76,10 @@ export default function Navbar() {
 
             <li className=" rounded-lg  hover:bg-gray-600 ">
               <Link href={"/leaderboard"}>Leaderboard</Link>
+            </li>
+
+            <li className=" rounded-lg  hover:bg-gray-600 ">
+              <Link href={"/marketplace"}>Marketplace</Link>
             </li>
 
             <li className=" rounded-lg  hover:bg-gray-600 ">
