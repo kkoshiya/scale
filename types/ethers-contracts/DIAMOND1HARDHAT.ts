@@ -2,3326 +2,3251 @@
 /* tslint:disable */
 /* eslint-disable */
 import type {
-  BaseContract,
-  BigNumber,
-  BigNumberish,
-  BytesLike,
-  CallOverrides,
-  ContractTransaction,
-  Overrides,
-  PopulatedTransaction,
-  Signer,
-  utils,
-} from "ethers";
-import type {
-  FunctionFragment,
-  Result,
-  EventFragment,
-} from "@ethersproject/abi";
-import type { Listener, Provider } from "@ethersproject/providers";
-import type {
-  TypedEventFilter,
-  TypedEvent,
-  TypedListener,
-  OnEvent,
-  PromiseOrValue,
-} from "./common";
-
-export type ItemStruct = {
-  slot: PromiseOrValue<BigNumberish>;
-  rank: PromiseOrValue<BigNumberish>;
-  value: PromiseOrValue<BigNumberish>;
-  stat: PromiseOrValue<BigNumberish>;
-  name: PromiseOrValue<string>;
-  owner: PromiseOrValue<string>;
-  isEquiped: PromiseOrValue<boolean>;
-};
-
-export type ItemStructOutput = [
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  string,
-  string,
-  boolean
-] & {
-  slot: BigNumber;
-  rank: BigNumber;
-  value: BigNumber;
-  stat: BigNumber;
-  name: string;
-  owner: string;
-  isEquiped: boolean;
-};
-
-export type SlotStruct = {
-  head: PromiseOrValue<BigNumberish>;
-  body: PromiseOrValue<BigNumberish>;
-  leftHand: PromiseOrValue<BigNumberish>;
-  rightHand: PromiseOrValue<BigNumberish>;
-  pants: PromiseOrValue<BigNumberish>;
-  feet: PromiseOrValue<BigNumberish>;
-};
-
-export type SlotStructOutput = [
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber
-] & {
-  head: BigNumber;
-  body: BigNumber;
-  leftHand: BigNumber;
-  rightHand: BigNumber;
-  pants: BigNumber;
-  feet: BigNumber;
-};
-
-export type PlayerStruct = {
-  level: PromiseOrValue<BigNumberish>;
-  xp: PromiseOrValue<BigNumberish>;
-  status: PromiseOrValue<BigNumberish>;
-  strength: PromiseOrValue<BigNumberish>;
-  health: PromiseOrValue<BigNumberish>;
-  magic: PromiseOrValue<BigNumberish>;
-  mana: PromiseOrValue<BigNumberish>;
-  agility: PromiseOrValue<BigNumberish>;
-  luck: PromiseOrValue<BigNumberish>;
-  wisdom: PromiseOrValue<BigNumberish>;
-  haki: PromiseOrValue<BigNumberish>;
-  perception: PromiseOrValue<BigNumberish>;
-  defense: PromiseOrValue<BigNumberish>;
-  name: PromiseOrValue<string>;
-  uri: PromiseOrValue<string>;
-  male: PromiseOrValue<boolean>;
-  slot: SlotStruct;
-};
-
-export type PlayerStructOutput = [
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  string,
-  string,
-  boolean,
-  SlotStructOutput
-] & {
-  level: BigNumber;
-  xp: BigNumber;
-  status: BigNumber;
-  strength: BigNumber;
-  health: BigNumber;
-  magic: BigNumber;
-  mana: BigNumber;
-  agility: BigNumber;
-  luck: BigNumber;
-  wisdom: BigNumber;
-  haki: BigNumber;
-  perception: BigNumber;
-  defense: BigNumber;
-  name: string;
-  uri: string;
-  male: boolean;
-  slot: SlotStructOutput;
-};
-
-export declare namespace IDiamond {
-  export type FacetCutStruct = {
-    facetAddress: PromiseOrValue<string>;
-    action: PromiseOrValue<BigNumberish>;
-    functionSelectors: PromiseOrValue<BytesLike>[];
+    BaseContract,
+    BigNumber,
+    BigNumberish,
+    BytesLike,
+    CallOverrides,
+    ContractTransaction,
+    Overrides,
+    PopulatedTransaction,
+    Signer,
+    utils,
+  } from "ethers";
+  import type {
+    FunctionFragment,
+    Result,
+    EventFragment,
+  } from "@ethersproject/abi";
+  import type { Listener, Provider } from "@ethersproject/providers";
+  import type {
+    TypedEventFilter,
+    TypedEvent,
+    TypedListener,
+    OnEvent,
+    PromiseOrValue,
+  } from "./common";
+  
+  export type ItemStruct = {
+    slot: PromiseOrValue<BigNumberish>;
+    rank: PromiseOrValue<BigNumberish>;
+    value: PromiseOrValue<BigNumberish>;
+    stat: PromiseOrValue<BigNumberish>;
+    name: PromiseOrValue<string>;
+    owner: PromiseOrValue<string>;
+    isEquiped: PromiseOrValue<boolean>;
   };
-
-  export type FacetCutStructOutput = [string, number, string[]] & {
-    facetAddress: string;
-    action: number;
-    functionSelectors: string[];
+  
+  export type ItemStructOutput = [
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    string,
+    string,
+    boolean
+  ] & {
+    slot: BigNumber;
+    rank: BigNumber;
+    value: BigNumber;
+    stat: BigNumber;
+    name: string;
+    owner: string;
+    isEquiped: boolean;
   };
-}
-
-export declare namespace IDiamondLoupe {
-  export type FacetStruct = {
-    facetAddress: PromiseOrValue<string>;
-    functionSelectors: PromiseOrValue<BytesLike>[];
+  
+  export type SlotStruct = {
+    head: PromiseOrValue<BigNumberish>;
+    body: PromiseOrValue<BigNumberish>;
+    leftHand: PromiseOrValue<BigNumberish>;
+    rightHand: PromiseOrValue<BigNumberish>;
+    pants: PromiseOrValue<BigNumberish>;
+    feet: PromiseOrValue<BigNumberish>;
   };
-
-  export type FacetStructOutput = [string, string[]] & {
-    facetAddress: string;
-    functionSelectors: string[];
+  
+  export type SlotStructOutput = [
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber
+  ] & {
+    head: BigNumber;
+    body: BigNumber;
+    leftHand: BigNumber;
+    rightHand: BigNumber;
+    pants: BigNumber;
+    feet: BigNumber;
   };
-}
-
-export interface DIAMOND1HARDHATInterface extends utils.Interface {
-  functions: {
-    "enterMagicArena(uint256)": FunctionFragment;
-    "enterMainArena(uint256)": FunctionFragment;
-    "enterSecondArena(uint256)": FunctionFragment;
-    "fightMagicArena(uint256)": FunctionFragment;
-    "fightMainArena(uint256)": FunctionFragment;
-    "fightSecondArena(uint256)": FunctionFragment;
-    "getMagicArena()": FunctionFragment;
-    "getMagicArenaLosses(uint256)": FunctionFragment;
-    "getMagicArenaWins(uint256)": FunctionFragment;
-    "getMainArena()": FunctionFragment;
-    "getMainArenaLosses(uint256)": FunctionFragment;
-    "getMainArenaWins(uint256)": FunctionFragment;
-    "getSecondArena()": FunctionFragment;
-    "getTotalLosses(uint256)": FunctionFragment;
-    "getTotalWins(uint256)": FunctionFragment;
-    "leaveMainArena(uint256)": FunctionFragment;
-    "openArenas()": FunctionFragment;
-    "craftArmor(uint256)": FunctionFragment;
-    "craftGuitar(uint256)": FunctionFragment;
-    "craftHelmet(uint256)": FunctionFragment;
-    "craftSorcerShoes(uint256)": FunctionFragment;
-    "craftSword(uint256)": FunctionFragment;
-    "craftWizardHat(uint256)": FunctionFragment;
-    "getItem(uint256)": FunctionFragment;
-    "getItemCount()": FunctionFragment;
-    "getItems(address)": FunctionFragment;
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)": FunctionFragment;
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)": FunctionFragment;
-    "facetAddress(bytes4)": FunctionFragment;
-    "facetAddress(bytes4)": FunctionFragment;
-    "facetAddresses()": FunctionFragment;
-    "facetAddresses()": FunctionFragment;
-    "facetFunctionSelectors(address)": FunctionFragment;
-    "facetFunctionSelectors(address)": FunctionFragment;
-    "facets()": FunctionFragment;
-    "facets()": FunctionFragment;
-    "supportsInterface(bytes4)": FunctionFragment;
-    "supportsInterface(bytes4)": FunctionFragment;
-    "equipBody(uint256,uint256)": FunctionFragment;
-    "equipHead(uint256,uint256)": FunctionFragment;
-    "equipRightHand(uint256,uint256)": FunctionFragment;
-    "unequipBody(uint256,uint256)": FunctionFragment;
-    "unequipHead(uint256,uint256)": FunctionFragment;
-    "unequipRightHand(uint256,uint256)": FunctionFragment;
-    "_getListing(address)": FunctionFragment;
-    "crateListing(uint256,uint256)": FunctionFragment;
-    "purchasePlayer(uint256)": FunctionFragment;
-    "owner()": FunctionFragment;
-    "owner()": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
-    "transferOwnership(address)": FunctionFragment;
-    "changeName(uint256,string)": FunctionFragment;
-    "getBlocktime()": FunctionFragment;
-    "getPlayer(uint256)": FunctionFragment;
-    "getPlayers(address)": FunctionFragment;
-    "mint(string,string,bool)": FunctionFragment;
-    "nameAvailable(string)": FunctionFragment;
-    "ownerOf(uint256)": FunctionFragment;
-    "playerCount()": FunctionFragment;
-    "endQuestGem(uint256)": FunctionFragment;
-    "endQuestGold(uint256)": FunctionFragment;
-    "getCooldown(uint256)": FunctionFragment;
-    "getGemBalance(address)": FunctionFragment;
-    "getGemStart(uint256)": FunctionFragment;
-    "getGoldBalance(address)": FunctionFragment;
-    "getGoldStart(uint256)": FunctionFragment;
-    "startQuestGem(uint256)": FunctionFragment;
-    "startQuestGold(uint256)": FunctionFragment;
-    "openSecondArena()": FunctionFragment;
-    "endTrainingCombat(uint256)": FunctionFragment;
-    "endTrainingMana(uint256)": FunctionFragment;
-    "getCombatStart(uint256)": FunctionFragment;
-    "getManaStart(uint256)": FunctionFragment;
-    "startTrainingCombat(uint256)": FunctionFragment;
-    "startTrainingMana(uint256)": FunctionFragment;
-    "init()": FunctionFragment;
+  
+  export type PlayerStruct = {
+    level: PromiseOrValue<BigNumberish>;
+    xp: PromiseOrValue<BigNumberish>;
+    status: PromiseOrValue<BigNumberish>;
+    strength: PromiseOrValue<BigNumberish>;
+    health: PromiseOrValue<BigNumberish>;
+    magic: PromiseOrValue<BigNumberish>;
+    mana: PromiseOrValue<BigNumberish>;
+    agility: PromiseOrValue<BigNumberish>;
+    luck: PromiseOrValue<BigNumberish>;
+    wisdom: PromiseOrValue<BigNumberish>;
+    haki: PromiseOrValue<BigNumberish>;
+    perception: PromiseOrValue<BigNumberish>;
+    defense: PromiseOrValue<BigNumberish>;
+    name: PromiseOrValue<string>;
+    uri: PromiseOrValue<string>;
+    male: PromiseOrValue<boolean>;
+    slot: SlotStruct;
   };
-
-  getFunction(
-    nameOrSignatureOrTopic:
-      | "enterMagicArena"
-      | "enterMainArena"
-      | "enterSecondArena"
-      | "fightMagicArena"
-      | "fightMainArena"
-      | "fightSecondArena"
-      | "getMagicArena"
-      | "getMagicArenaLosses"
-      | "getMagicArenaWins"
-      | "getMainArena"
-      | "getMainArenaLosses"
-      | "getMainArenaWins"
-      | "getSecondArena"
-      | "getTotalLosses"
-      | "getTotalWins"
-      | "leaveMainArena"
-      | "openArenas"
-      | "craftArmor"
-      | "craftGuitar"
-      | "craftHelmet"
-      | "craftSorcerShoes"
-      | "craftSword"
-      | "craftWizardHat"
-      | "getItem"
-      | "getItemCount"
-      | "getItems"
-      | "diamondCut((address,uint8,bytes4[])[],address,bytes)"
-      | "diamondCut((address,uint8,bytes4[])[],address,bytes)"
-      | "facetAddress(bytes4)"
-      | "facetAddress(bytes4)"
-      | "facetAddresses()"
-      | "facetAddresses()"
-      | "facetFunctionSelectors(address)"
-      | "facetFunctionSelectors(address)"
-      | "facets()"
-      | "facets()"
-      | "supportsInterface(bytes4)"
-      | "supportsInterface(bytes4)"
-      | "equipBody"
-      | "equipHead"
-      | "equipRightHand"
-      | "unequipBody"
-      | "unequipHead"
-      | "unequipRightHand"
-      | "_getListing"
-      | "crateListing"
-      | "purchasePlayer"
-      | "owner()"
-      | "owner()"
-      | "transferOwnership(address)"
-      | "transferOwnership(address)"
-      | "changeName"
-      | "getBlocktime"
-      | "getPlayer"
-      | "getPlayers"
-      | "mint"
-      | "nameAvailable"
-      | "ownerOf"
-      | "playerCount"
-      | "endQuestGem"
-      | "endQuestGold"
-      | "getCooldown"
-      | "getGemBalance"
-      | "getGemStart"
-      | "getGoldBalance"
-      | "getGoldStart"
-      | "startQuestGem"
-      | "startQuestGold"
-      | "openSecondArena"
-      | "endTrainingCombat"
-      | "endTrainingMana"
-      | "getCombatStart"
-      | "getManaStart"
-      | "startTrainingCombat"
-      | "startTrainingMana"
-      | "init"
-  ): FunctionFragment;
-
-  encodeFunctionData(
-    functionFragment: "enterMagicArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "enterMainArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "enterSecondArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "fightMagicArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "fightMainArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "fightSecondArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMagicArena",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMagicArenaLosses",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMagicArenaWins",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMainArena",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMainArenaLosses",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getMainArenaWins",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getSecondArena",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getTotalLosses",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getTotalWins",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "leaveMainArena",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "openArenas",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftArmor",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftGuitar",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftHelmet",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftSorcerShoes",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftSword",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "craftWizardHat",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getItem",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getItemCount",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getItems",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
-    values: [
-      IDiamond.FacetCutStruct[],
-      PromiseOrValue<string>,
-      PromiseOrValue<BytesLike>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
-    values: [
-      IDiamond.FacetCutStruct[],
-      PromiseOrValue<string>,
-      PromiseOrValue<BytesLike>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetAddress(bytes4)",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetAddress(bytes4)",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetAddresses()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetAddresses()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetFunctionSelectors(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "facetFunctionSelectors(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(functionFragment: "facets()", values?: undefined): string;
-  encodeFunctionData(functionFragment: "facets()", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "supportsInterface(bytes4)",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "supportsInterface(bytes4)",
-    values: [PromiseOrValue<BytesLike>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "equipBody",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "equipHead",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "equipRightHand",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "unequipBody",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "unequipHead",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "unequipRightHand",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "_getListing",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "crateListing",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "purchasePlayer",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "transferOwnership(address)",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "changeName",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getBlocktime",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getPlayer",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getPlayers",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "mint",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<boolean>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "nameAvailable",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "ownerOf",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "playerCount",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "endQuestGem",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "endQuestGold",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getCooldown",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getGemBalance",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getGemStart",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getGoldBalance",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getGoldStart",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "startQuestGem",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "startQuestGold",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "openSecondArena",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "endTrainingCombat",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "endTrainingMana",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getCombatStart",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getManaStart",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "startTrainingCombat",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "startTrainingMana",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(functionFragment: "init", values?: undefined): string;
-
-  decodeFunctionResult(
-    functionFragment: "enterMagicArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "enterMainArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "enterSecondArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "fightMagicArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "fightMainArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "fightSecondArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMagicArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMagicArenaLosses",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMagicArenaWins",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMainArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMainArenaLosses",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getMainArenaWins",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getSecondArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getTotalLosses",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getTotalWins",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "leaveMainArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "openArenas", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "craftArmor", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "craftGuitar",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "craftHelmet",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "craftSorcerShoes",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "craftSword", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "craftWizardHat",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "getItem", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getItemCount",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "getItems", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetAddress(bytes4)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetAddress(bytes4)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetAddresses()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetAddresses()",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetFunctionSelectors(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "facetFunctionSelectors(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "facets()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "facets()", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "supportsInterface(bytes4)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "supportsInterface(bytes4)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "equipBody", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "equipHead", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "equipRightHand",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "unequipBody",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "unequipHead",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "unequipRightHand",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "_getListing",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "crateListing",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "purchasePlayer",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership(address)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "changeName", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getBlocktime",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "getPlayer", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "getPlayers", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "nameAvailable",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "playerCount",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "endQuestGem",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "endQuestGold",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getCooldown",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getGemBalance",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getGemStart",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getGoldBalance",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getGoldStart",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "startQuestGem",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "startQuestGold",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "openSecondArena",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "endTrainingCombat",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "endTrainingMana",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getCombatStart",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getManaStart",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "startTrainingCombat",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "startTrainingMana",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "init", data: BytesLike): Result;
-
-  events: {
-    "EnterMagic(uint256)": EventFragment;
-    "EnterMain(uint256)": EventFragment;
-    "EnterSecond(uint256)": EventFragment;
-    "MagicLoss(uint256)": EventFragment;
-    "MagicWin(uint256)": EventFragment;
-    "MainLoss(uint256)": EventFragment;
-    "MainWin(uint256)": EventFragment;
-    "SecondLoss(uint256)": EventFragment;
-    "SecondWin(uint256)": EventFragment;
-    "ItemCrafted(address,uint256)": EventFragment;
-    "DiamondCut(tuple[],address,bytes)": EventFragment;
-    "DiamondCut(tuple[],address,bytes)": EventFragment;
-    "DiamondCut(tuple[],address,bytes)": EventFragment;
-    "DiamondCut(tuple[],address,bytes)": EventFragment;
-    "ItemEquiped(address,uint256,uint256)": EventFragment;
-    "ItemUnequiped(address,uint256,uint256)": EventFragment;
-    "List(address,uint256,uint256)": EventFragment;
-    "Purchase(address,uint256)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
-    "OwnershipTransferred(address,address)": EventFragment;
-    "Mint(uint256,address,string,string)": EventFragment;
-    "NameChange(address,uint256,string)": EventFragment;
-    "BeginQuesting(address,uint256)": EventFragment;
-    "EndQuesting(address,uint256)": EventFragment;
-    "BeginTrainingCombat(address,uint256)": EventFragment;
-    "BeginTrainingMana(address,uint256)": EventFragment;
-    "EndTrainingCombat(address,uint256)": EventFragment;
-    "EndTrainingMana(address,uint256)": EventFragment;
+  
+  export type PlayerStructOutput = [
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    string,
+    string,
+    boolean,
+    SlotStructOutput
+  ] & {
+    level: BigNumber;
+    xp: BigNumber;
+    status: BigNumber;
+    strength: BigNumber;
+    health: BigNumber;
+    magic: BigNumber;
+    mana: BigNumber;
+    agility: BigNumber;
+    luck: BigNumber;
+    wisdom: BigNumber;
+    haki: BigNumber;
+    perception: BigNumber;
+    defense: BigNumber;
+    name: string;
+    uri: string;
+    male: boolean;
+    slot: SlotStructOutput;
   };
-
-  getEvent(nameOrSignatureOrTopic: "EnterMagic"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "EnterMain"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "EnterSecond"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MagicLoss"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MagicWin"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MainLoss"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "MainWin"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "SecondLoss"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "SecondWin"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ItemCrafted"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
-  ): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
-  ): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
-  ): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ItemEquiped"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "ItemUnequiped"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "List"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Purchase"): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
-  ): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
-  ): EventFragment;
-  getEvent(
-    nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
-  ): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "Mint"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "NameChange"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "BeginQuesting"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "EndQuesting"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "BeginTrainingCombat"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "BeginTrainingMana"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "EndTrainingCombat"): EventFragment;
-  getEvent(nameOrSignatureOrTopic: "EndTrainingMana"): EventFragment;
-}
-
-export interface EnterMagicEventObject {
-  _playerId: BigNumber;
-}
-export type EnterMagicEvent = TypedEvent<[BigNumber], EnterMagicEventObject>;
-
-export type EnterMagicEventFilter = TypedEventFilter<EnterMagicEvent>;
-
-export interface EnterMainEventObject {
-  _playerId: BigNumber;
-}
-export type EnterMainEvent = TypedEvent<[BigNumber], EnterMainEventObject>;
-
-export type EnterMainEventFilter = TypedEventFilter<EnterMainEvent>;
-
-export interface EnterSecondEventObject {
-  _playerId: BigNumber;
-}
-export type EnterSecondEvent = TypedEvent<[BigNumber], EnterSecondEventObject>;
-
-export type EnterSecondEventFilter = TypedEventFilter<EnterSecondEvent>;
-
-export interface MagicLossEventObject {
-  _playerId: BigNumber;
-}
-export type MagicLossEvent = TypedEvent<[BigNumber], MagicLossEventObject>;
-
-export type MagicLossEventFilter = TypedEventFilter<MagicLossEvent>;
-
-export interface MagicWinEventObject {
-  _playerId: BigNumber;
-}
-export type MagicWinEvent = TypedEvent<[BigNumber], MagicWinEventObject>;
-
-export type MagicWinEventFilter = TypedEventFilter<MagicWinEvent>;
-
-export interface MainLossEventObject {
-  _playerId: BigNumber;
-}
-export type MainLossEvent = TypedEvent<[BigNumber], MainLossEventObject>;
-
-export type MainLossEventFilter = TypedEventFilter<MainLossEvent>;
-
-export interface MainWinEventObject {
-  _playerId: BigNumber;
-}
-export type MainWinEvent = TypedEvent<[BigNumber], MainWinEventObject>;
-
-export type MainWinEventFilter = TypedEventFilter<MainWinEvent>;
-
-export interface SecondLossEventObject {
-  _playerId: BigNumber;
-}
-export type SecondLossEvent = TypedEvent<[BigNumber], SecondLossEventObject>;
-
-export type SecondLossEventFilter = TypedEventFilter<SecondLossEvent>;
-
-export interface SecondWinEventObject {
-  _playerId: BigNumber;
-}
-export type SecondWinEvent = TypedEvent<[BigNumber], SecondWinEventObject>;
-
-export type SecondWinEventFilter = TypedEventFilter<SecondWinEvent>;
-
-export interface ItemCraftedEventObject {
-  _owner: string;
-  _player: BigNumber;
-}
-export type ItemCraftedEvent = TypedEvent<
-  [string, BigNumber],
-  ItemCraftedEventObject
->;
-
-export type ItemCraftedEventFilter = TypedEventFilter<ItemCraftedEvent>;
-
-export interface DiamondCut_tuple_array_address_bytes_EventObject {
-  _diamondCut: IDiamond.FacetCutStructOutput[];
-  _init: string;
-  _calldata: string;
-}
-export type DiamondCut_tuple_array_address_bytes_Event = TypedEvent<
-  [IDiamond.FacetCutStructOutput[], string, string],
-  DiamondCut_tuple_array_address_bytes_EventObject
->;
-
-export type DiamondCut_tuple_array_address_bytes_EventFilter =
-  TypedEventFilter<DiamondCut_tuple_array_address_bytes_Event>;
-
-export interface DiamondCut_tuple_array_address_bytes_EventObject {
-  _diamondCut: IDiamond.FacetCutStructOutput[];
-  _init: string;
-  _calldata: string;
-}
-export type DiamondCut_tuple_array_address_bytes_Event = TypedEvent<
-  [IDiamond.FacetCutStructOutput[], string, string],
-  DiamondCut_tuple_array_address_bytes_EventObject
->;
-
-export type DiamondCut_tuple_array_address_bytes_EventFilter =
-  TypedEventFilter<DiamondCut_tuple_array_address_bytes_Event>;
-
-export interface DiamondCut_tuple_array_address_bytes_EventObject {
-  _diamondCut: IDiamond.FacetCutStructOutput[];
-  _init: string;
-  _calldata: string;
-}
-export type DiamondCut_tuple_array_address_bytes_Event = TypedEvent<
-  [IDiamond.FacetCutStructOutput[], string, string],
-  DiamondCut_tuple_array_address_bytes_EventObject
->;
-
-export type DiamondCut_tuple_array_address_bytes_EventFilter =
-  TypedEventFilter<DiamondCut_tuple_array_address_bytes_Event>;
-
-export interface DiamondCut_tuple_array_address_bytes_EventObject {
-  _diamondCut: IDiamond.FacetCutStructOutput[];
-  _init: string;
-  _calldata: string;
-}
-export type DiamondCut_tuple_array_address_bytes_Event = TypedEvent<
-  [IDiamond.FacetCutStructOutput[], string, string],
-  DiamondCut_tuple_array_address_bytes_EventObject
->;
-
-export type DiamondCut_tuple_array_address_bytes_EventFilter =
-  TypedEventFilter<DiamondCut_tuple_array_address_bytes_Event>;
-
-export interface ItemEquipedEventObject {
-  _owner: string;
-  _playerId: BigNumber;
-  _itemId: BigNumber;
-}
-export type ItemEquipedEvent = TypedEvent<
-  [string, BigNumber, BigNumber],
-  ItemEquipedEventObject
->;
-
-export type ItemEquipedEventFilter = TypedEventFilter<ItemEquipedEvent>;
-
-export interface ItemUnequipedEventObject {
-  _owner: string;
-  _playerId: BigNumber;
-  _itemId: BigNumber;
-}
-export type ItemUnequipedEvent = TypedEvent<
-  [string, BigNumber, BigNumber],
-  ItemUnequipedEventObject
->;
-
-export type ItemUnequipedEventFilter = TypedEventFilter<ItemUnequipedEvent>;
-
-export interface ListEventObject {
-  _from: string;
-  _playerId: BigNumber;
-  _price: BigNumber;
-}
-export type ListEvent = TypedEvent<
-  [string, BigNumber, BigNumber],
-  ListEventObject
->;
-
-export type ListEventFilter = TypedEventFilter<ListEvent>;
-
-export interface PurchaseEventObject {
-  _to: string;
-  _id: BigNumber;
-}
-export type PurchaseEvent = TypedEvent<
-  [string, BigNumber],
-  PurchaseEventObject
->;
-
-export type PurchaseEventFilter = TypedEventFilter<PurchaseEvent>;
-
-export interface OwnershipTransferred_address_address_EventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferred_address_address_Event = TypedEvent<
-  [string, string],
-  OwnershipTransferred_address_address_EventObject
->;
-
-export type OwnershipTransferred_address_address_EventFilter =
-  TypedEventFilter<OwnershipTransferred_address_address_Event>;
-
-export interface OwnershipTransferred_address_address_EventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferred_address_address_Event = TypedEvent<
-  [string, string],
-  OwnershipTransferred_address_address_EventObject
->;
-
-export type OwnershipTransferred_address_address_EventFilter =
-  TypedEventFilter<OwnershipTransferred_address_address_Event>;
-
-export interface OwnershipTransferred_address_address_EventObject {
-  previousOwner: string;
-  newOwner: string;
-}
-export type OwnershipTransferred_address_address_Event = TypedEvent<
-  [string, string],
-  OwnershipTransferred_address_address_EventObject
->;
-
-export type OwnershipTransferred_address_address_EventFilter =
-  TypedEventFilter<OwnershipTransferred_address_address_Event>;
-
-export interface MintEventObject {
-  id: BigNumber;
-  owner: string;
-  name: string;
-  uri: string;
-}
-export type MintEvent = TypedEvent<
-  [BigNumber, string, string, string],
-  MintEventObject
->;
-
-export type MintEventFilter = TypedEventFilter<MintEvent>;
-
-export interface NameChangeEventObject {
-  owner: string;
-  id: BigNumber;
-  newName: string;
-}
-export type NameChangeEvent = TypedEvent<
-  [string, BigNumber, string],
-  NameChangeEventObject
->;
-
-export type NameChangeEventFilter = TypedEventFilter<NameChangeEvent>;
-
-export interface BeginQuestingEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type BeginQuestingEvent = TypedEvent<
-  [string, BigNumber],
-  BeginQuestingEventObject
->;
-
-export type BeginQuestingEventFilter = TypedEventFilter<BeginQuestingEvent>;
-
-export interface EndQuestingEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type EndQuestingEvent = TypedEvent<
-  [string, BigNumber],
-  EndQuestingEventObject
->;
-
-export type EndQuestingEventFilter = TypedEventFilter<EndQuestingEvent>;
-
-export interface BeginTrainingCombatEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type BeginTrainingCombatEvent = TypedEvent<
-  [string, BigNumber],
-  BeginTrainingCombatEventObject
->;
-
-export type BeginTrainingCombatEventFilter =
-  TypedEventFilter<BeginTrainingCombatEvent>;
-
-export interface BeginTrainingManaEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type BeginTrainingManaEvent = TypedEvent<
-  [string, BigNumber],
-  BeginTrainingManaEventObject
->;
-
-export type BeginTrainingManaEventFilter =
-  TypedEventFilter<BeginTrainingManaEvent>;
-
-export interface EndTrainingCombatEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type EndTrainingCombatEvent = TypedEvent<
-  [string, BigNumber],
-  EndTrainingCombatEventObject
->;
-
-export type EndTrainingCombatEventFilter =
-  TypedEventFilter<EndTrainingCombatEvent>;
-
-export interface EndTrainingManaEventObject {
-  _playerAddress: string;
-  _id: BigNumber;
-}
-export type EndTrainingManaEvent = TypedEvent<
-  [string, BigNumber],
-  EndTrainingManaEventObject
->;
-
-export type EndTrainingManaEventFilter = TypedEventFilter<EndTrainingManaEvent>;
-
-export interface DIAMOND1HARDHAT extends BaseContract {
-  connect(signerOrProvider: Signer | Provider | string): this;
-  attach(addressOrName: string): this;
-  deployed(): Promise<this>;
-
-  interface: DIAMOND1HARDHATInterface;
-
-  queryFilter<TEvent extends TypedEvent>(
-    event: TypedEventFilter<TEvent>,
-    fromBlockOrBlockhash?: string | number | undefined,
-    toBlock?: string | number | undefined
-  ): Promise<Array<TEvent>>;
-
-  listeners<TEvent extends TypedEvent>(
-    eventFilter?: TypedEventFilter<TEvent>
-  ): Array<TypedListener<TEvent>>;
-  listeners(eventName?: string): Array<Listener>;
-  removeAllListeners<TEvent extends TypedEvent>(
-    eventFilter: TypedEventFilter<TEvent>
-  ): this;
-  removeAllListeners(eventName?: string): this;
-  off: OnEvent<this>;
-  on: OnEvent<this>;
-  once: OnEvent<this>;
-  removeListener: OnEvent<this>;
-
-  functions: {
+  
+  export declare namespace IDiamond {
+    export type FacetCutStruct = {
+      facetAddress: PromiseOrValue<string>;
+      action: PromiseOrValue<BigNumberish>;
+      functionSelectors: PromiseOrValue<BytesLike>[];
+    };
+  
+    export type FacetCutStructOutput = [string, number, string[]] & {
+      facetAddress: string;
+      action: number;
+      functionSelectors: string[];
+    };
+  }
+  
+  export declare namespace IDiamondLoupe {
+    export type FacetStruct = {
+      facetAddress: PromiseOrValue<string>;
+      functionSelectors: PromiseOrValue<BytesLike>[];
+    };
+  
+    export type FacetStructOutput = [string, string[]] & {
+      facetAddress: string;
+      functionSelectors: string[];
+    };
+  }
+  
+  export interface DIAMOND1HARDHATInterface extends utils.Interface {
+    functions: {
+      "enterMagicArena(uint256)": FunctionFragment;
+      "enterMainArena(uint256)": FunctionFragment;
+      "enterSecondArena(uint256)": FunctionFragment;
+      "fightMagicArena(uint256)": FunctionFragment;
+      "fightMainArena(uint256)": FunctionFragment;
+      "fightSecondArena(uint256)": FunctionFragment;
+      "getMagicArena()": FunctionFragment;
+      "getMagicArenaLosses(uint256)": FunctionFragment;
+      "getMagicArenaWins(uint256)": FunctionFragment;
+      "getMainArena()": FunctionFragment;
+      "getMainArenaLosses(uint256)": FunctionFragment;
+      "getMainArenaWins(uint256)": FunctionFragment;
+      "getSecondArena()": FunctionFragment;
+      "getTotalLosses(uint256)": FunctionFragment;
+      "getTotalWins(uint256)": FunctionFragment;
+      "leaveMainArena(uint256)": FunctionFragment;
+      "openArenas()": FunctionFragment;
+      "craftArmor(uint256)": FunctionFragment;
+      "craftGuitar(uint256)": FunctionFragment;
+      "craftHelmet(uint256)": FunctionFragment;
+      "craftSorcerShoes(uint256)": FunctionFragment;
+      "craftSword(uint256)": FunctionFragment;
+      "craftWizardHat(uint256)": FunctionFragment;
+      "getItem(uint256)": FunctionFragment;
+      "getItemCount()": FunctionFragment;
+      "getItems(address)": FunctionFragment;
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)": FunctionFragment;
+      "facetAddress(bytes4)": FunctionFragment;
+      "facetAddresses()": FunctionFragment;
+      "facetFunctionSelectors(address)": FunctionFragment;
+      "facets()": FunctionFragment;
+      "supportsInterface(bytes4)": FunctionFragment;
+      "equipBody(uint256,uint256)": FunctionFragment;
+      "equipHead(uint256,uint256)": FunctionFragment;
+      "equipRightHand(uint256,uint256)": FunctionFragment;
+      "unequipBody(uint256,uint256)": FunctionFragment;
+      "unequipHead(uint256,uint256)": FunctionFragment;
+      "unequipRightHand(uint256,uint256)": FunctionFragment;
+      "_getListing(address)": FunctionFragment;
+      "crateListing(uint256,uint256)": FunctionFragment;
+      "purchasePlayer(uint256)": FunctionFragment;
+      "owner()": FunctionFragment;
+      "transferOwnership(address)": FunctionFragment;
+      "changeName(uint256,string)": FunctionFragment;
+      "getBlocktime()": FunctionFragment;
+      "getPlayer(uint256)": FunctionFragment;
+      "getPlayers(address)": FunctionFragment;
+      "mint(string,string,bool)": FunctionFragment;
+      "nameAvailable(string)": FunctionFragment;
+      "ownerOf(uint256)": FunctionFragment;
+      "playerCount()": FunctionFragment;
+      "endQuestGem(uint256)": FunctionFragment;
+      "endQuestGold(uint256)": FunctionFragment;
+      "getCooldown(uint256)": FunctionFragment;
+      "getGemBalance(address)": FunctionFragment;
+      "getGemStart(uint256)": FunctionFragment;
+      "getGoldBalance(address)": FunctionFragment;
+      "getGoldStart(uint256)": FunctionFragment;
+      "startQuestGem(uint256)": FunctionFragment;
+      "startQuestGold(uint256)": FunctionFragment;
+      "openSecondArena()": FunctionFragment;
+      "endTrainingCombat(uint256)": FunctionFragment;
+      "endTrainingMana(uint256)": FunctionFragment;
+      "getCombatStart(uint256)": FunctionFragment;
+      "getManaStart(uint256)": FunctionFragment;
+      "startTrainingCombat(uint256)": FunctionFragment;
+      "startTrainingMana(uint256)": FunctionFragment;
+      "init()": FunctionFragment;
+    };
+  
+    getFunction(
+      nameOrSignatureOrTopic:
+        | "enterMagicArena"
+        | "enterMainArena"
+        | "enterSecondArena"
+        | "fightMagicArena"
+        | "fightMainArena"
+        | "fightSecondArena"
+        | "getMagicArena"
+        | "getMagicArenaLosses"
+        | "getMagicArenaWins"
+        | "getMainArena"
+        | "getMainArenaLosses"
+        | "getMainArenaWins"
+        | "getSecondArena"
+        | "getTotalLosses"
+        | "getTotalWins"
+        | "leaveMainArena"
+        | "openArenas"
+        | "craftArmor"
+        | "craftGuitar"
+        | "craftHelmet"
+        | "craftSorcerShoes"
+        | "craftSword"
+        | "craftWizardHat"
+        | "getItem"
+        | "getItemCount"
+        | "getItems"
+        | "diamondCut((address,uint8,bytes4[])[],address,bytes)"
+        | "diamondCut((address,uint8,bytes4[])[],address,bytes)"
+        | "facetAddress(bytes4)"
+        | "facetAddress(bytes4)"
+        | "facetAddresses()"
+        | "facetAddresses()"
+        | "facetFunctionSelectors(address)"
+        | "facetFunctionSelectors(address)"
+        | "facets()"
+        | "facets()"
+        | "supportsInterface(bytes4)"
+        | "supportsInterface(bytes4)"
+        | "equipBody"
+        | "equipHead"
+        | "equipRightHand"
+        | "unequipBody"
+        | "unequipHead"
+        | "unequipRightHand"
+        | "_getListing"
+        | "crateListing"
+        | "purchasePlayer"
+        | "owner()"
+        | "owner()"
+        | "transferOwnership(address)"
+        | "transferOwnership(address)"
+        | "changeName"
+        | "getBlocktime"
+        | "getPlayer"
+        | "getPlayers"
+        | "mint"
+        | "nameAvailable"
+        | "ownerOf"
+        | "playerCount"
+        | "endQuestGem"
+        | "endQuestGold"
+        | "getCooldown"
+        | "getGemBalance"
+        | "getGemStart"
+        | "getGoldBalance"
+        | "getGoldStart"
+        | "startQuestGem"
+        | "startQuestGold"
+        | "openSecondArena"
+        | "endTrainingCombat"
+        | "endTrainingMana"
+        | "getCombatStart"
+        | "getManaStart"
+        | "startTrainingCombat"
+        | "startTrainingMana"
+        | "init"
+    ): FunctionFragment;
+  
+    encodeFunctionData(
+      functionFragment: "enterMagicArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "enterMainArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "enterSecondArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "fightMagicArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "fightMainArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "fightSecondArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMagicArena",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMagicArenaLosses",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMagicArenaWins",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMainArena",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMainArenaLosses",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getMainArenaWins",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getSecondArena",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getTotalLosses",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getTotalWins",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "leaveMainArena",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "openArenas",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftArmor",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftGuitar",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftHelmet",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftSorcerShoes",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftSword",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "craftWizardHat",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getItem",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getItemCount",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getItems",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
+      values: [
+        IDiamond.FacetCutStruct[],
+        PromiseOrValue<string>,
+        PromiseOrValue<BytesLike>
+      ]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
+      values: [
+        IDiamond.FacetCutStruct[],
+        PromiseOrValue<string>,
+        PromiseOrValue<BytesLike>
+      ]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetAddress(bytes4)",
+      values: [PromiseOrValue<BytesLike>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetAddress(bytes4)",
+      values: [PromiseOrValue<BytesLike>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetAddresses()",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetAddresses()",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetFunctionSelectors(address)",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "facetFunctionSelectors(address)",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(functionFragment: "facets()", values?: undefined): string;
+    encodeFunctionData(functionFragment: "facets()", values?: undefined): string;
+    encodeFunctionData(
+      functionFragment: "supportsInterface(bytes4)",
+      values: [PromiseOrValue<BytesLike>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "supportsInterface(bytes4)",
+      values: [PromiseOrValue<BytesLike>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "equipBody",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "equipHead",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "equipRightHand",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "unequipBody",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "unequipHead",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "unequipRightHand",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "_getListing",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "crateListing",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "purchasePlayer",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
+    encodeFunctionData(functionFragment: "owner()", values?: undefined): string;
+    encodeFunctionData(
+      functionFragment: "transferOwnership(address)",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "transferOwnership(address)",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "changeName",
+      values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getBlocktime",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getPlayer",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getPlayers",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "mint",
+      values: [
+        PromiseOrValue<string>,
+        PromiseOrValue<string>,
+        PromiseOrValue<boolean>
+      ]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "nameAvailable",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "ownerOf",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "playerCount",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "endQuestGem",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "endQuestGold",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getCooldown",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getGemBalance",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getGemStart",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getGoldBalance",
+      values: [PromiseOrValue<string>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getGoldStart",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "startQuestGem",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "startQuestGold",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "openSecondArena",
+      values?: undefined
+    ): string;
+    encodeFunctionData(
+      functionFragment: "endTrainingCombat",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "endTrainingMana",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getCombatStart",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "getManaStart",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "startTrainingCombat",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(
+      functionFragment: "startTrainingMana",
+      values: [PromiseOrValue<BigNumberish>]
+    ): string;
+    encodeFunctionData(functionFragment: "init", values?: undefined): string;
+  
+    decodeFunctionResult(
+      functionFragment: "enterMagicArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "enterMainArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "enterSecondArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "fightMagicArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "fightMainArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "fightSecondArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMagicArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMagicArenaLosses",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMagicArenaWins",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMainArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMainArenaLosses",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getMainArenaWins",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getSecondArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getTotalLosses",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getTotalWins",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "leaveMainArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "openArenas", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "craftArmor", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "craftGuitar",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "craftHelmet",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "craftSorcerShoes",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "craftSword", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "craftWizardHat",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "getItem", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "getItemCount",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "getItems", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "diamondCut((address,uint8,bytes4[])[],address,bytes)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetAddress(bytes4)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetAddress(bytes4)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetAddresses()",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetAddresses()",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetFunctionSelectors(address)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "facetFunctionSelectors(address)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "facets()", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "facets()", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "supportsInterface(bytes4)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "supportsInterface(bytes4)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "equipBody", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "equipHead", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "equipRightHand",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "unequipBody",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "unequipHead",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "unequipRightHand",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "_getListing",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "crateListing",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "purchasePlayer",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "owner()", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "transferOwnership(address)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "transferOwnership(address)",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "changeName", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "getBlocktime",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "getPlayer", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getPlayers", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "nameAvailable",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+    decodeFunctionResult(
+      functionFragment: "playerCount",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "endQuestGem",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "endQuestGold",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getCooldown",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getGemBalance",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getGemStart",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getGoldBalance",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getGoldStart",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "startQuestGem",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "startQuestGold",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "openSecondArena",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "endTrainingCombat",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "endTrainingMana",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getCombatStart",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "getManaStart",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "startTrainingCombat",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(
+      functionFragment: "startTrainingMana",
+      data: BytesLike
+    ): Result;
+    decodeFunctionResult(functionFragment: "init", data: BytesLike): Result;
+  
+    events: {
+      "EnterMagic(uint256)": EventFragment;
+      "EnterMain(uint256)": EventFragment;
+      "EnterSecond(uint256)": EventFragment;
+      "MagicLoss(uint256)": EventFragment;
+      "MagicWin(uint256)": EventFragment;
+      "MainLoss(uint256)": EventFragment;
+      "MainWin(uint256)": EventFragment;
+      "SecondLoss(uint256)": EventFragment;
+      "SecondWin(uint256)": EventFragment;
+      "ItemCrafted(address,uint256)": EventFragment;
+      "DiamondCut(tuple[],address,bytes)": EventFragment;
+      "ItemEquiped(address,uint256,uint256)": EventFragment;
+      "ItemUnequiped(address,uint256,uint256)": EventFragment;
+      "List(address,uint256,uint256)": EventFragment;
+      "Purchase(address,uint256)": EventFragment;
+      "OwnershipTransferred(address,address)": EventFragment;
+      "Mint(uint256,address,string,string)": EventFragment;
+      "NameChange(address,uint256,string)": EventFragment;
+      "BeginQuesting(address,uint256)": EventFragment;
+      "EndQuesting(address,uint256)": EventFragment;
+      "BeginTrainingCombat(address,uint256)": EventFragment;
+      "BeginTrainingMana(address,uint256)": EventFragment;
+      "EndTrainingCombat(address,uint256)": EventFragment;
+      "EndTrainingMana(address,uint256)": EventFragment;
+    };
+  
+    getEvent(nameOrSignatureOrTopic: "EnterMagic"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "EnterMain"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "EnterSecond"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "MagicLoss"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "MagicWin"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "MainLoss"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "MainWin"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "SecondLoss"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "SecondWin"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "ItemCrafted"): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
+    ): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
+    ): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
+    ): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "DiamondCut(tuple[],address,bytes)"
+    ): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "ItemEquiped"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "ItemUnequiped"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "List"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "Purchase"): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
+    ): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
+    ): EventFragment;
+    getEvent(
+      nameOrSignatureOrTopic: "OwnershipTransferred(address,address)"
+    ): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "Mint"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "NameChange"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "BeginQuesting"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "EndQuesting"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "BeginTrainingCombat"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "BeginTrainingMana"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "EndTrainingCombat"): EventFragment;
+    getEvent(nameOrSignatureOrTopic: "EndTrainingMana"): EventFragment;
+  }
+  
+  export interface EnterMagicEventObject {
+    _playerId: BigNumber;
+  }
+  export type EnterMagicEvent = TypedEvent<[BigNumber], EnterMagicEventObject>;
+  
+  export type EnterMagicEventFilter = TypedEventFilter<EnterMagicEvent>;
+  
+  export interface EnterMainEventObject {
+    _playerId: BigNumber;
+  }
+  export type EnterMainEvent = TypedEvent<[BigNumber], EnterMainEventObject>;
+  
+  export type EnterMainEventFilter = TypedEventFilter<EnterMainEvent>;
+  
+  export interface EnterSecondEventObject {
+    _playerId: BigNumber;
+  }
+  export type EnterSecondEvent = TypedEvent<[BigNumber], EnterSecondEventObject>;
+  
+  export type EnterSecondEventFilter = TypedEventFilter<EnterSecondEvent>;
+  
+  export interface MagicLossEventObject {
+    _playerId: BigNumber;
+  }
+  export type MagicLossEvent = TypedEvent<[BigNumber], MagicLossEventObject>;
+  
+  export type MagicLossEventFilter = TypedEventFilter<MagicLossEvent>;
+  
+  export interface MagicWinEventObject {
+    _playerId: BigNumber;
+  }
+  export type MagicWinEvent = TypedEvent<[BigNumber], MagicWinEventObject>;
+  
+  export type MagicWinEventFilter = TypedEventFilter<MagicWinEvent>;
+  
+  export interface MainLossEventObject {
+    _playerId: BigNumber;
+  }
+  export type MainLossEvent = TypedEvent<[BigNumber], MainLossEventObject>;
+  
+  export type MainLossEventFilter = TypedEventFilter<MainLossEvent>;
+  
+  export interface MainWinEventObject {
+    _playerId: BigNumber;
+  }
+  export type MainWinEvent = TypedEvent<[BigNumber], MainWinEventObject>;
+  
+  export type MainWinEventFilter = TypedEventFilter<MainWinEvent>;
+  
+  export interface SecondLossEventObject {
+    _playerId: BigNumber;
+  }
+  export type SecondLossEvent = TypedEvent<[BigNumber], SecondLossEventObject>;
+  
+  export type SecondLossEventFilter = TypedEventFilter<SecondLossEvent>;
+  
+  export interface SecondWinEventObject {
+    _playerId: BigNumber;
+  }
+  export type SecondWinEvent = TypedEvent<[BigNumber], SecondWinEventObject>;
+  
+  export type SecondWinEventFilter = TypedEventFilter<SecondWinEvent>;
+  
+  export interface ItemCraftedEventObject {
+    _owner: string;
+    _player: BigNumber;
+  }
+  export type ItemCraftedEvent = TypedEvent<
+    [string, BigNumber],
+    ItemCraftedEventObject
+  >;
+  
+  export type ItemCraftedEventFilter = TypedEventFilter<ItemCraftedEvent>;
+  
+  export interface DiamondCut_tuple_array_address_bytes_EventObject {
+    _diamondCut: IDiamond.FacetCutStructOutput[];
+    _init: string;
+    _calldata: string;
+  }
+  export type DiamondCut_tuple_array_address_bytes_Event = TypedEvent<
+    [IDiamond.FacetCutStructOutput[], string, string],
+    DiamondCut_tuple_array_address_bytes_EventObject
+  >;
+  
+  export type DiamondCut_tuple_array_address_bytes_EventFilter =
+    TypedEventFilter<DiamondCut_tuple_array_address_bytes_Event>;
+  
+  export interface ItemEquipedEventObject {
+    _owner: string;
+    _playerId: BigNumber;
+    _itemId: BigNumber;
+  }
+  export type ItemEquipedEvent = TypedEvent<
+    [string, BigNumber, BigNumber],
+    ItemEquipedEventObject
+  >;
+  
+  export type ItemEquipedEventFilter = TypedEventFilter<ItemEquipedEvent>;
+  
+  export interface ItemUnequipedEventObject {
+    _owner: string;
+    _playerId: BigNumber;
+    _itemId: BigNumber;
+  }
+  export type ItemUnequipedEvent = TypedEvent<
+    [string, BigNumber, BigNumber],
+    ItemUnequipedEventObject
+  >;
+  
+  export type ItemUnequipedEventFilter = TypedEventFilter<ItemUnequipedEvent>;
+  
+  export interface ListEventObject {
+    _from: string;
+    _playerId: BigNumber;
+    _price: BigNumber;
+  }
+  export type ListEvent = TypedEvent<
+    [string, BigNumber, BigNumber],
+    ListEventObject
+  >;
+  
+  export type ListEventFilter = TypedEventFilter<ListEvent>;
+  
+  export interface PurchaseEventObject {
+    _to: string;
+    _id: BigNumber;
+  }
+  export type PurchaseEvent = TypedEvent<
+    [string, BigNumber],
+    PurchaseEventObject
+  >;
+  
+  export type PurchaseEventFilter = TypedEventFilter<PurchaseEvent>;
+  
+  export interface OwnershipTransferred_address_address_EventObject {
+    previousOwner: string;
+    newOwner: string;
+  }
+  export type OwnershipTransferred_address_address_Event = TypedEvent<
+    [string, string],
+    OwnershipTransferred_address_address_EventObject
+  >;
+  
+  export type OwnershipTransferred_address_address_EventFilter =
+    TypedEventFilter<OwnershipTransferred_address_address_Event>;
+  
+  export interface MintEventObject {
+    id: BigNumber;
+    owner: string;
+    name: string;
+    uri: string;
+  }
+  export type MintEvent = TypedEvent<
+    [BigNumber, string, string, string],
+    MintEventObject
+  >;
+  
+  export type MintEventFilter = TypedEventFilter<MintEvent>;
+  
+  export interface NameChangeEventObject {
+    owner: string;
+    id: BigNumber;
+    newName: string;
+  }
+  export type NameChangeEvent = TypedEvent<
+    [string, BigNumber, string],
+    NameChangeEventObject
+  >;
+  
+  export type NameChangeEventFilter = TypedEventFilter<NameChangeEvent>;
+  
+  export interface BeginQuestingEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type BeginQuestingEvent = TypedEvent<
+    [string, BigNumber],
+    BeginQuestingEventObject
+  >;
+  
+  export type BeginQuestingEventFilter = TypedEventFilter<BeginQuestingEvent>;
+  
+  export interface EndQuestingEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type EndQuestingEvent = TypedEvent<
+    [string, BigNumber],
+    EndQuestingEventObject
+  >;
+  
+  export type EndQuestingEventFilter = TypedEventFilter<EndQuestingEvent>;
+  
+  export interface BeginTrainingCombatEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type BeginTrainingCombatEvent = TypedEvent<
+    [string, BigNumber],
+    BeginTrainingCombatEventObject
+  >;
+  
+  export type BeginTrainingCombatEventFilter =
+    TypedEventFilter<BeginTrainingCombatEvent>;
+  
+  export interface BeginTrainingManaEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type BeginTrainingManaEvent = TypedEvent<
+    [string, BigNumber],
+    BeginTrainingManaEventObject
+  >;
+  
+  export type BeginTrainingManaEventFilter =
+    TypedEventFilter<BeginTrainingManaEvent>;
+  
+  export interface EndTrainingCombatEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type EndTrainingCombatEvent = TypedEvent<
+    [string, BigNumber],
+    EndTrainingCombatEventObject
+  >;
+  
+  export type EndTrainingCombatEventFilter =
+    TypedEventFilter<EndTrainingCombatEvent>;
+  
+  export interface EndTrainingManaEventObject {
+    _playerAddress: string;
+    _id: BigNumber;
+  }
+  export type EndTrainingManaEvent = TypedEvent<
+    [string, BigNumber],
+    EndTrainingManaEventObject
+  >;
+  
+  export type EndTrainingManaEventFilter = TypedEventFilter<EndTrainingManaEvent>;
+  
+  export interface DIAMOND1HARDHAT extends BaseContract {
+    connect(signerOrProvider: Signer | Provider | string): this;
+    attach(addressOrName: string): this;
+    deployed(): Promise<this>;
+  
+    interface: DIAMOND1HARDHATInterface;
+  
+    queryFilter<TEvent extends TypedEvent>(
+      event: TypedEventFilter<TEvent>,
+      fromBlockOrBlockhash?: string | number | undefined,
+      toBlock?: string | number | undefined
+    ): Promise<Array<TEvent>>;
+  
+    listeners<TEvent extends TypedEvent>(
+      eventFilter?: TypedEventFilter<TEvent>
+    ): Array<TypedListener<TEvent>>;
+    listeners(eventName?: string): Array<Listener>;
+    removeAllListeners<TEvent extends TypedEvent>(
+      eventFilter: TypedEventFilter<TEvent>
+    ): this;
+    removeAllListeners(eventName?: string): this;
+    off: OnEvent<this>;
+    on: OnEvent<this>;
+    once: OnEvent<this>;
+    removeListener: OnEvent<this>;
+  
+    functions: {
+      enterMagicArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      enterMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      enterSecondArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      fightMagicArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      fightMainArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      fightSecondArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      getMagicArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getMagicArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getMagicArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getMainArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getMainArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getMainArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getSecondArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getTotalLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getTotalWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      leaveMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      openArenas(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftArmor(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftGuitar(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftHelmet(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftSorcerShoes(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftSword(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      craftWizardHat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      getItem(
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[ItemStructOutput] & { item: ItemStructOutput }>;
+  
+      getItemCount(
+        overrides?: CallOverrides
+      ): Promise<[BigNumber] & { count: BigNumber }>;
+  
+      getItems(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber[]] & { items: BigNumber[] }>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<[string] & { facetAddress_: string }>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<[string] & { facetAddress_: string }>;
+  
+      "facetAddresses()"(
+        overrides?: CallOverrides
+      ): Promise<[string[]] & { facetAddresses_: string[] }>;
+  
+      "facetAddresses()"(
+        overrides?: CallOverrides
+      ): Promise<[string[]] & { facetAddresses_: string[] }>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[string[]] & { _facetFunctionSelectors: string[] }>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[string[]] & { facetFunctionSelectors_: string[] }>;
+  
+      "facets()"(
+        overrides?: CallOverrides
+      ): Promise<
+        [IDiamondLoupe.FacetStructOutput[]] & {
+          facets_: IDiamondLoupe.FacetStructOutput[];
+        }
+      >;
+  
+      "facets()"(
+        overrides?: CallOverrides
+      ): Promise<
+        [IDiamondLoupe.FacetStructOutput[]] & {
+          facets_: IDiamondLoupe.FacetStructOutput[];
+        }
+      >;
+  
+      "supportsInterface(bytes4)"(
+        _interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<[boolean]>;
+  
+      "supportsInterface(bytes4)"(
+        interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<[boolean]>;
+  
+      equipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      equipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      equipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      unequipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      unequipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      unequipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      _getListing(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[void]>;
+  
+      crateListing(
+        _id: PromiseOrValue<BigNumberish>,
+        _price: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      purchasePlayer(
+        _listingId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      "owner()"(
+        overrides?: CallOverrides
+      ): Promise<[string] & { owner_: string }>;
+  
+      "owner()"(
+        overrides?: CallOverrides
+      ): Promise<[string] & { owner_: string }>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      changeName(
+        _id: PromiseOrValue<BigNumberish>,
+        _newName: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      getBlocktime(overrides?: CallOverrides): Promise<[BigNumber]>;
+  
+      getPlayer(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[PlayerStructOutput] & { player: PlayerStructOutput }>;
+  
+      getPlayers(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber[]]>;
+  
+      mint(
+        _name: PromiseOrValue<string>,
+        _uri: PromiseOrValue<string>,
+        _isMale: PromiseOrValue<boolean>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      nameAvailable(
+        _name: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[boolean] & { available: boolean }>;
+  
+      ownerOf(
+        _id: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[string] & { owner: string }>;
+  
+      playerCount(overrides?: CallOverrides): Promise<[BigNumber]>;
+  
+      endQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      endQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      getCooldown(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getGemBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getGemStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getGoldBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getGoldStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      startQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      startQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      openSecondArena(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      endTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      endTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      getCombatStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      getManaStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<[BigNumber]>;
+  
+      startTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      startTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+  
+      init(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<ContractTransaction>;
+    };
+  
     enterMagicArena(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     enterMainArena(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     enterSecondArena(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     fightMagicArena(
       _challengerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     fightMainArena(
       _challengerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     fightSecondArena(
       _challengerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     getMagicArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
+  
     getMagicArenaLosses(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     getMagicArenaWins(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     getMainArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
+  
     getMainArenaLosses(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     getMainArenaWins(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     getSecondArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
+  
     getTotalLosses(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     getTotalWins(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
+    ): Promise<BigNumber>;
+  
     leaveMainArena(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     openArenas(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftArmor(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftGuitar(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftHelmet(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftSorcerShoes(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftSword(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
+  
     craftWizardHat(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
-    getItem(
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[ItemStructOutput] & { item: ItemStructOutput }>;
-
-    getItemCount(
-      overrides?: CallOverrides
-    ): Promise<[BigNumber] & { count: BigNumber }>;
-
-    getItems(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber[]] & { items: BigNumber[] }>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[string] & { facetAddress_: string }>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[string] & { facetAddress_: string }>;
-
-    "facetAddresses()"(
-      overrides?: CallOverrides
-    ): Promise<[string[]] & { facetAddresses_: string[] }>;
-
-    "facetAddresses()"(
-      overrides?: CallOverrides
-    ): Promise<[string[]] & { facetAddresses_: string[] }>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[string[]] & { _facetFunctionSelectors: string[] }>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[string[]] & { facetFunctionSelectors_: string[] }>;
-
-    "facets()"(
-      overrides?: CallOverrides
-    ): Promise<
-      [IDiamondLoupe.FacetStructOutput[]] & {
-        facets_: IDiamondLoupe.FacetStructOutput[];
-      }
-    >;
-
-    "facets()"(
-      overrides?: CallOverrides
-    ): Promise<
-      [IDiamondLoupe.FacetStructOutput[]] & {
-        facets_: IDiamondLoupe.FacetStructOutput[];
-      }
-    >;
-
-    "supportsInterface(bytes4)"(
-      _interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    equipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    equipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    equipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    unequipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    unequipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    unequipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    _getListing(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[void]>;
-
-    crateListing(
-      _id: PromiseOrValue<BigNumberish>,
-      _price: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    purchasePlayer(
-      _listingId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "owner()"(
-      overrides?: CallOverrides
-    ): Promise<[string] & { owner_: string }>;
-
-    "owner()"(
-      overrides?: CallOverrides
-    ): Promise<[string] & { owner_: string }>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    changeName(
-      _id: PromiseOrValue<BigNumberish>,
-      _newName: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    getBlocktime(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    getPlayer(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[PlayerStructOutput] & { player: PlayerStructOutput }>;
-
-    getPlayers(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber[]]>;
-
-    mint(
-      _name: PromiseOrValue<string>,
-      _uri: PromiseOrValue<string>,
-      _isMale: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    nameAvailable(
-      _name: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[boolean] & { available: boolean }>;
-
-    ownerOf(
-      _id: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[string] & { owner: string }>;
-
-    playerCount(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    endQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    endQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    getCooldown(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    getGemBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    getGemStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    getGoldBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    getGoldStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    startQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    startQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    openSecondArena(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    endTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    endTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    getCombatStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    getManaStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    startTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    startTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    init(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-  };
-
-  enterMagicArena(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  enterMainArena(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  enterSecondArena(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  fightMagicArena(
-    _challengerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  fightMainArena(
-    _challengerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  fightSecondArena(
-    _challengerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getMagicArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-  getMagicArenaLosses(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getMagicArenaWins(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getMainArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-  getMainArenaLosses(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getMainArenaWins(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getSecondArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-  getTotalLosses(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getTotalWins(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  leaveMainArena(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  openArenas(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftArmor(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftGuitar(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftHelmet(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftSorcerShoes(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftSword(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  craftWizardHat(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getItem(
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<ItemStructOutput>;
-
-  getItemCount(overrides?: CallOverrides): Promise<BigNumber>;
-
-  getItems(
-    _address: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber[]>;
-
-  "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-    _diamondCut: IDiamond.FacetCutStruct[],
-    _init: PromiseOrValue<string>,
-    _calldata: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-    _diamondCut: IDiamond.FacetCutStruct[],
-    _init: PromiseOrValue<string>,
-    _calldata: PromiseOrValue<BytesLike>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "facetAddress(bytes4)"(
-    _functionSelector: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "facetAddress(bytes4)"(
-    _functionSelector: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
-
-  "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
-
-  "facetFunctionSelectors(address)"(
-    _facet: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<string[]>;
-
-  "facetFunctionSelectors(address)"(
-    _facet: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<string[]>;
-
-  "facets()"(
-    overrides?: CallOverrides
-  ): Promise<IDiamondLoupe.FacetStructOutput[]>;
-
-  "facets()"(
-    overrides?: CallOverrides
-  ): Promise<IDiamondLoupe.FacetStructOutput[]>;
-
-  "supportsInterface(bytes4)"(
-    _interfaceId: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "supportsInterface(bytes4)"(
-    interfaceId: PromiseOrValue<BytesLike>,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  equipBody(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  equipHead(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  equipRightHand(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  unequipBody(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  unequipHead(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  unequipRightHand(
-    _playerId: PromiseOrValue<BigNumberish>,
-    _itemId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  _getListing(
-    _address: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<void>;
-
-  crateListing(
-    _id: PromiseOrValue<BigNumberish>,
-    _price: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  purchasePlayer(
-    _listingId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "owner()"(overrides?: CallOverrides): Promise<string>;
-
-  "owner()"(overrides?: CallOverrides): Promise<string>;
-
-  "transferOwnership(address)"(
-    _newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "transferOwnership(address)"(
-    _newOwner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  changeName(
-    _id: PromiseOrValue<BigNumberish>,
-    _newName: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getBlocktime(overrides?: CallOverrides): Promise<BigNumber>;
-
-  getPlayer(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<PlayerStructOutput>;
-
-  getPlayers(
-    _address: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber[]>;
-
-  mint(
-    _name: PromiseOrValue<string>,
-    _uri: PromiseOrValue<string>,
-    _isMale: PromiseOrValue<boolean>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  nameAvailable(
-    _name: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  ownerOf(
-    _id: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  playerCount(overrides?: CallOverrides): Promise<BigNumber>;
-
-  endQuestGem(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  endQuestGold(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getCooldown(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getGemBalance(
-    _address: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getGemStart(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getGoldBalance(
-    _address: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getGoldStart(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  startQuestGem(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  startQuestGold(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  openSecondArena(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  endTrainingCombat(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  endTrainingMana(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  getCombatStart(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  getManaStart(
-    _playerId: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  startTrainingCombat(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  startTrainingMana(
-    _tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  init(
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  callStatic: {
-    enterMagicArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    enterMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    enterSecondArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    fightMagicArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    fightMainArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    fightSecondArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    getMagicArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-    getMagicArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMagicArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMainArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-    getMainArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMainArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getSecondArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
-
-    getTotalLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getTotalWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    leaveMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    openArenas(overrides?: CallOverrides): Promise<void>;
-
-    craftArmor(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    craftGuitar(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    craftHelmet(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    craftSorcerShoes(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    craftSword(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    craftWizardHat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+  
     getItem(
       _itemId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<ItemStructOutput>;
-
+  
     getItemCount(overrides?: CallOverrides): Promise<BigNumber>;
-
+  
     getItems(
       _address: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber[]>;
-
+  
     "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
       _diamondCut: IDiamond.FacetCutStruct[],
       _init: PromiseOrValue<string>,
       _calldata: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
       _diamondCut: IDiamond.FacetCutStruct[],
       _init: PromiseOrValue<string>,
       _calldata: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     "facetAddress(bytes4)"(
       _functionSelector: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<string>;
-
+  
     "facetAddress(bytes4)"(
       _functionSelector: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<string>;
-
+  
     "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
-
+  
     "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
-
+  
     "facetFunctionSelectors(address)"(
       _facet: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string[]>;
-
+  
     "facetFunctionSelectors(address)"(
       _facet: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string[]>;
-
+  
     "facets()"(
       overrides?: CallOverrides
     ): Promise<IDiamondLoupe.FacetStructOutput[]>;
-
+  
     "facets()"(
       overrides?: CallOverrides
     ): Promise<IDiamondLoupe.FacetStructOutput[]>;
-
+  
     "supportsInterface(bytes4)"(
       _interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<boolean>;
-
+  
     "supportsInterface(bytes4)"(
       interfaceId: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<boolean>;
-
+  
     equipBody(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     equipHead(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     equipRightHand(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     unequipBody(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     unequipHead(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     unequipRightHand(
       _playerId: PromiseOrValue<BigNumberish>,
       _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     _getListing(
       _address: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
-
+  
     crateListing(
       _id: PromiseOrValue<BigNumberish>,
       _price: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     purchasePlayer(
       _listingId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     "owner()"(overrides?: CallOverrides): Promise<string>;
-
+  
     "owner()"(overrides?: CallOverrides): Promise<string>;
-
+  
     "transferOwnership(address)"(
       _newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     "transferOwnership(address)"(
       _newOwner: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     changeName(
       _id: PromiseOrValue<BigNumberish>,
       _newName: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     getBlocktime(overrides?: CallOverrides): Promise<BigNumber>;
-
+  
     getPlayer(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PlayerStructOutput>;
-
+  
     getPlayers(
       _address: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber[]>;
-
+  
     mint(
       _name: PromiseOrValue<string>,
       _uri: PromiseOrValue<string>,
       _isMale: PromiseOrValue<boolean>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     nameAvailable(
       _name: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
-
+  
     ownerOf(
       _id: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
-
+  
     playerCount(overrides?: CallOverrides): Promise<BigNumber>;
-
+  
     endQuestGem(
       _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     endQuestGold(
       _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+  
     getCooldown(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     getGemBalance(
       _address: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     getGemStart(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     getGoldBalance(
       _address: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     getGoldStart(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
-    startQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    startQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    openSecondArena(overrides?: CallOverrides): Promise<void>;
-
-    endTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    endTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    getCombatStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getManaStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    startTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    startTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    init(overrides?: CallOverrides): Promise<void>;
-  };
-
-  filters: {
-    "EnterMagic(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterMagicEventFilter;
-    EnterMagic(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterMagicEventFilter;
-
-    "EnterMain(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterMainEventFilter;
-    EnterMain(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterMainEventFilter;
-
-    "EnterSecond(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterSecondEventFilter;
-    EnterSecond(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): EnterSecondEventFilter;
-
-    "MagicLoss(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MagicLossEventFilter;
-    MagicLoss(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MagicLossEventFilter;
-
-    "MagicWin(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MagicWinEventFilter;
-    MagicWin(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MagicWinEventFilter;
-
-    "MainLoss(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MainLossEventFilter;
-    MainLoss(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MainLossEventFilter;
-
-    "MainWin(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MainWinEventFilter;
-    MainWin(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): MainWinEventFilter;
-
-    "SecondLoss(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): SecondLossEventFilter;
-    SecondLoss(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): SecondLossEventFilter;
-
-    "SecondWin(uint256)"(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): SecondWinEventFilter;
-    SecondWin(
-      _playerId?: PromiseOrValue<BigNumberish> | null
-    ): SecondWinEventFilter;
-
-    "ItemCrafted(address,uint256)"(
-      _owner?: PromiseOrValue<string> | null,
-      _player?: null
-    ): ItemCraftedEventFilter;
-    ItemCrafted(
-      _owner?: PromiseOrValue<string> | null,
-      _player?: null
-    ): ItemCraftedEventFilter;
-
-    "DiamondCut(tuple[],address,bytes)"(
-      _diamondCut?: null,
-      _init?: null,
-      _calldata?: null
-    ): DiamondCut_tuple_array_address_bytes_EventFilter;
-    "DiamondCut(tuple[],address,bytes)"(
-      _diamondCut?: null,
-      _init?: null,
-      _calldata?: null
-    ): DiamondCut_tuple_array_address_bytes_EventFilter;
-    "DiamondCut(tuple[],address,bytes)"(
-      _diamondCut?: null,
-      _init?: null,
-      _calldata?: null
-    ): DiamondCut_tuple_array_address_bytes_EventFilter;
-    "DiamondCut(tuple[],address,bytes)"(
-      _diamondCut?: null,
-      _init?: null,
-      _calldata?: null
-    ): DiamondCut_tuple_array_address_bytes_EventFilter;
-
-    "ItemEquiped(address,uint256,uint256)"(
-      _owner?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _itemId?: PromiseOrValue<BigNumberish> | null
-    ): ItemEquipedEventFilter;
-    ItemEquiped(
-      _owner?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _itemId?: PromiseOrValue<BigNumberish> | null
-    ): ItemEquipedEventFilter;
-
-    "ItemUnequiped(address,uint256,uint256)"(
-      _owner?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _itemId?: PromiseOrValue<BigNumberish> | null
-    ): ItemUnequipedEventFilter;
-    ItemUnequiped(
-      _owner?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _itemId?: PromiseOrValue<BigNumberish> | null
-    ): ItemUnequipedEventFilter;
-
-    "List(address,uint256,uint256)"(
-      _from?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _price?: null
-    ): ListEventFilter;
-    List(
-      _from?: PromiseOrValue<string> | null,
-      _playerId?: PromiseOrValue<BigNumberish> | null,
-      _price?: null
-    ): ListEventFilter;
-
-    "Purchase(address,uint256)"(
-      _to?: PromiseOrValue<string> | null,
-      _id?: null
-    ): PurchaseEventFilter;
-    Purchase(
-      _to?: PromiseOrValue<string> | null,
-      _id?: null
-    ): PurchaseEventFilter;
-
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferred_address_address_EventFilter;
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferred_address_address_EventFilter;
-    "OwnershipTransferred(address,address)"(
-      previousOwner?: PromiseOrValue<string> | null,
-      newOwner?: PromiseOrValue<string> | null
-    ): OwnershipTransferred_address_address_EventFilter;
-
-    "Mint(uint256,address,string,string)"(
-      id?: PromiseOrValue<BigNumberish> | null,
-      owner?: PromiseOrValue<string> | null,
-      name?: null,
-      uri?: null
-    ): MintEventFilter;
-    Mint(
-      id?: PromiseOrValue<BigNumberish> | null,
-      owner?: PromiseOrValue<string> | null,
-      name?: null,
-      uri?: null
-    ): MintEventFilter;
-
-    "NameChange(address,uint256,string)"(
-      owner?: PromiseOrValue<string> | null,
-      id?: PromiseOrValue<BigNumberish> | null,
-      newName?: PromiseOrValue<string> | null
-    ): NameChangeEventFilter;
-    NameChange(
-      owner?: PromiseOrValue<string> | null,
-      id?: PromiseOrValue<BigNumberish> | null,
-      newName?: PromiseOrValue<string> | null
-    ): NameChangeEventFilter;
-
-    "BeginQuesting(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: null
-    ): BeginQuestingEventFilter;
-    BeginQuesting(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: null
-    ): BeginQuestingEventFilter;
-
-    "EndQuesting(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: null
-    ): EndQuestingEventFilter;
-    EndQuesting(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: null
-    ): EndQuestingEventFilter;
-
-    "BeginTrainingCombat(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): BeginTrainingCombatEventFilter;
-    BeginTrainingCombat(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): BeginTrainingCombatEventFilter;
-
-    "BeginTrainingMana(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): BeginTrainingManaEventFilter;
-    BeginTrainingMana(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): BeginTrainingManaEventFilter;
-
-    "EndTrainingCombat(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): EndTrainingCombatEventFilter;
-    EndTrainingCombat(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): EndTrainingCombatEventFilter;
-
-    "EndTrainingMana(address,uint256)"(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): EndTrainingManaEventFilter;
-    EndTrainingMana(
-      _playerAddress?: PromiseOrValue<string> | null,
-      _id?: PromiseOrValue<BigNumberish> | null
-    ): EndTrainingManaEventFilter;
-  };
-
-  estimateGas: {
-    enterMagicArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    enterMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    enterSecondArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    fightMagicArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    fightMainArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    fightSecondArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getMagicArena(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getMagicArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMagicArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMainArena(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getMainArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getMainArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getSecondArena(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getTotalLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getTotalWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    leaveMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    openArenas(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftArmor(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftGuitar(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftHelmet(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftSorcerShoes(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftSword(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    craftWizardHat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getItem(
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getItemCount(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getItems(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "facetAddresses()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "facetAddresses()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "facets()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "facets()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "supportsInterface(bytes4)"(
-      _interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    equipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    equipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    equipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    unequipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    unequipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    unequipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    _getListing(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    crateListing(
-      _id: PromiseOrValue<BigNumberish>,
-      _price: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    purchasePlayer(
-      _listingId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    changeName(
-      _id: PromiseOrValue<BigNumberish>,
-      _newName: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getBlocktime(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getPlayer(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getPlayers(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    mint(
-      _name: PromiseOrValue<string>,
-      _uri: PromiseOrValue<string>,
-      _isMale: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    nameAvailable(
-      _name: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    ownerOf(
-      _id: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    playerCount(overrides?: CallOverrides): Promise<BigNumber>;
-
-    endQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    endQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getCooldown(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getGemBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getGemStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getGoldBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getGoldStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
+  
     startQuestGem(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     startQuestGold(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     openSecondArena(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     endTrainingCombat(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     endTrainingMana(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     getCombatStart(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     getManaStart(
       _playerId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
-
+  
     startTrainingCombat(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     startTrainingMana(
       _tokenId: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
+    ): Promise<ContractTransaction>;
+  
     init(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-  };
-
-  populateTransaction: {
-    enterMagicArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    enterMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    enterSecondArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    fightMagicArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    fightMainArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    fightSecondArena(
-      _challengerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getMagicArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getMagicArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getMagicArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getMainArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getMainArenaLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getMainArenaWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getSecondArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getTotalLosses(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getTotalWins(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    leaveMainArena(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    openArenas(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftArmor(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftGuitar(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftHelmet(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftSorcerShoes(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftSword(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    craftWizardHat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getItem(
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getItemCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getItems(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
-      _diamondCut: IDiamond.FacetCutStruct[],
-      _init: PromiseOrValue<string>,
-      _calldata: PromiseOrValue<BytesLike>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facetAddress(bytes4)"(
-      _functionSelector: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facetAddresses()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facetAddresses()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facetFunctionSelectors(address)"(
-      _facet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "facets()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "facets()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "supportsInterface(bytes4)"(
-      _interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "supportsInterface(bytes4)"(
-      interfaceId: PromiseOrValue<BytesLike>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    equipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    equipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    equipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    unequipBody(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    unequipHead(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    unequipRightHand(
-      _playerId: PromiseOrValue<BigNumberish>,
-      _itemId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    _getListing(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    crateListing(
-      _id: PromiseOrValue<BigNumberish>,
-      _price: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    purchasePlayer(
-      _listingId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "transferOwnership(address)"(
-      _newOwner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    changeName(
-      _id: PromiseOrValue<BigNumberish>,
-      _newName: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getBlocktime(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getPlayer(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getPlayers(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    mint(
-      _name: PromiseOrValue<string>,
-      _uri: PromiseOrValue<string>,
-      _isMale: PromiseOrValue<boolean>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    nameAvailable(
-      _name: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    ownerOf(
-      _id: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    playerCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    endQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    endQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getCooldown(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getGemBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getGemStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getGoldBalance(
-      _address: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getGoldStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    startQuestGem(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    startQuestGold(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    openSecondArena(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    endTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    endTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    getCombatStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getManaStart(
-      _playerId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    startTrainingCombat(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    startTrainingMana(
-      _tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    init(
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-  };
-}
+    ): Promise<ContractTransaction>;
+  
+    callStatic: {
+      enterMagicArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      enterMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      enterSecondArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      fightMagicArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      fightMainArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      fightSecondArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      getMagicArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getMagicArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMagicArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMainArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getMainArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMainArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getSecondArena(overrides?: CallOverrides): Promise<[boolean, BigNumber]>;
+  
+      getTotalLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getTotalWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      leaveMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      openArenas(overrides?: CallOverrides): Promise<void>;
+  
+      craftArmor(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      craftGuitar(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      craftHelmet(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      craftSorcerShoes(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      craftSword(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      craftWizardHat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      getItem(
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<ItemStructOutput>;
+  
+      getItemCount(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getItems(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber[]>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<string>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<string>;
+  
+      "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
+  
+      "facetAddresses()"(overrides?: CallOverrides): Promise<string[]>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<string[]>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<string[]>;
+  
+      "facets()"(
+        overrides?: CallOverrides
+      ): Promise<IDiamondLoupe.FacetStructOutput[]>;
+  
+      "facets()"(
+        overrides?: CallOverrides
+      ): Promise<IDiamondLoupe.FacetStructOutput[]>;
+  
+      "supportsInterface(bytes4)"(
+        _interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<boolean>;
+  
+      "supportsInterface(bytes4)"(
+        interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<boolean>;
+  
+      equipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      equipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      equipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      unequipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      unequipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      unequipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      _getListing(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      crateListing(
+        _id: PromiseOrValue<BigNumberish>,
+        _price: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      purchasePlayer(
+        _listingId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<string>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<string>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      changeName(
+        _id: PromiseOrValue<BigNumberish>,
+        _newName: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      getBlocktime(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getPlayer(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PlayerStructOutput>;
+  
+      getPlayers(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber[]>;
+  
+      mint(
+        _name: PromiseOrValue<string>,
+        _uri: PromiseOrValue<string>,
+        _isMale: PromiseOrValue<boolean>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      nameAvailable(
+        _name: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<boolean>;
+  
+      ownerOf(
+        _id: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<string>;
+  
+      playerCount(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      endQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      endQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      getCooldown(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGemBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGemStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGoldBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGoldStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      startQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      startQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      openSecondArena(overrides?: CallOverrides): Promise<void>;
+  
+      endTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      endTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      getCombatStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getManaStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      startTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      startTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<void>;
+  
+      init(overrides?: CallOverrides): Promise<void>;
+    };
+  
+    filters: {
+      "EnterMagic(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterMagicEventFilter;
+      EnterMagic(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterMagicEventFilter;
+  
+      "EnterMain(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterMainEventFilter;
+      EnterMain(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterMainEventFilter;
+  
+      "EnterSecond(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterSecondEventFilter;
+      EnterSecond(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): EnterSecondEventFilter;
+  
+      "MagicLoss(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MagicLossEventFilter;
+      MagicLoss(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MagicLossEventFilter;
+  
+      "MagicWin(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MagicWinEventFilter;
+      MagicWin(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MagicWinEventFilter;
+  
+      "MainLoss(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MainLossEventFilter;
+      MainLoss(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MainLossEventFilter;
+  
+      "MainWin(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MainWinEventFilter;
+      MainWin(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): MainWinEventFilter;
+  
+      "SecondLoss(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): SecondLossEventFilter;
+      SecondLoss(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): SecondLossEventFilter;
+  
+      "SecondWin(uint256)"(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): SecondWinEventFilter;
+      SecondWin(
+        _playerId?: PromiseOrValue<BigNumberish> | null
+      ): SecondWinEventFilter;
+  
+      "ItemCrafted(address,uint256)"(
+        _owner?: PromiseOrValue<string> | null,
+        _player?: null
+      ): ItemCraftedEventFilter;
+      ItemCrafted(
+        _owner?: PromiseOrValue<string> | null,
+        _player?: null
+      ): ItemCraftedEventFilter;
+  
+      "DiamondCut(tuple[],address,bytes)"(
+        _diamondCut?: null,
+        _init?: null,
+        _calldata?: null
+      ): DiamondCut_tuple_array_address_bytes_EventFilter;
+      "DiamondCut(tuple[],address,bytes)"(
+        _diamondCut?: null,
+        _init?: null,
+        _calldata?: null
+      ): DiamondCut_tuple_array_address_bytes_EventFilter;
+      "DiamondCut(tuple[],address,bytes)"(
+        _diamondCut?: null,
+        _init?: null,
+        _calldata?: null
+      ): DiamondCut_tuple_array_address_bytes_EventFilter;
+      "DiamondCut(tuple[],address,bytes)"(
+        _diamondCut?: null,
+        _init?: null,
+        _calldata?: null
+      ): DiamondCut_tuple_array_address_bytes_EventFilter;
+  
+      "ItemEquiped(address,uint256,uint256)"(
+        _owner?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _itemId?: PromiseOrValue<BigNumberish> | null
+      ): ItemEquipedEventFilter;
+      ItemEquiped(
+        _owner?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _itemId?: PromiseOrValue<BigNumberish> | null
+      ): ItemEquipedEventFilter;
+  
+      "ItemUnequiped(address,uint256,uint256)"(
+        _owner?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _itemId?: PromiseOrValue<BigNumberish> | null
+      ): ItemUnequipedEventFilter;
+      ItemUnequiped(
+        _owner?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _itemId?: PromiseOrValue<BigNumberish> | null
+      ): ItemUnequipedEventFilter;
+  
+      "List(address,uint256,uint256)"(
+        _from?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _price?: null
+      ): ListEventFilter;
+      List(
+        _from?: PromiseOrValue<string> | null,
+        _playerId?: PromiseOrValue<BigNumberish> | null,
+        _price?: null
+      ): ListEventFilter;
+  
+      "Purchase(address,uint256)"(
+        _to?: PromiseOrValue<string> | null,
+        _id?: null
+      ): PurchaseEventFilter;
+      Purchase(
+        _to?: PromiseOrValue<string> | null,
+        _id?: null
+      ): PurchaseEventFilter;
+  
+      "OwnershipTransferred(address,address)"(
+        previousOwner?: PromiseOrValue<string> | null,
+        newOwner?: PromiseOrValue<string> | null
+      ): OwnershipTransferred_address_address_EventFilter;
+      "OwnershipTransferred(address,address)"(
+        previousOwner?: PromiseOrValue<string> | null,
+        newOwner?: PromiseOrValue<string> | null
+      ): OwnershipTransferred_address_address_EventFilter;
+      "OwnershipTransferred(address,address)"(
+        previousOwner?: PromiseOrValue<string> | null,
+        newOwner?: PromiseOrValue<string> | null
+      ): OwnershipTransferred_address_address_EventFilter;
+  
+      "Mint(uint256,address,string,string)"(
+        id?: PromiseOrValue<BigNumberish> | null,
+        owner?: PromiseOrValue<string> | null,
+        name?: null,
+        uri?: null
+      ): MintEventFilter;
+      Mint(
+        id?: PromiseOrValue<BigNumberish> | null,
+        owner?: PromiseOrValue<string> | null,
+        name?: null,
+        uri?: null
+      ): MintEventFilter;
+  
+      "NameChange(address,uint256,string)"(
+        owner?: PromiseOrValue<string> | null,
+        id?: PromiseOrValue<BigNumberish> | null,
+        newName?: PromiseOrValue<string> | null
+      ): NameChangeEventFilter;
+      NameChange(
+        owner?: PromiseOrValue<string> | null,
+        id?: PromiseOrValue<BigNumberish> | null,
+        newName?: PromiseOrValue<string> | null
+      ): NameChangeEventFilter;
+  
+      "BeginQuesting(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: null
+      ): BeginQuestingEventFilter;
+      BeginQuesting(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: null
+      ): BeginQuestingEventFilter;
+  
+      "EndQuesting(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: null
+      ): EndQuestingEventFilter;
+      EndQuesting(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: null
+      ): EndQuestingEventFilter;
+  
+      "BeginTrainingCombat(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): BeginTrainingCombatEventFilter;
+      BeginTrainingCombat(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): BeginTrainingCombatEventFilter;
+  
+      "BeginTrainingMana(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): BeginTrainingManaEventFilter;
+      BeginTrainingMana(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): BeginTrainingManaEventFilter;
+  
+      "EndTrainingCombat(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): EndTrainingCombatEventFilter;
+      EndTrainingCombat(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): EndTrainingCombatEventFilter;
+  
+      "EndTrainingMana(address,uint256)"(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): EndTrainingManaEventFilter;
+      EndTrainingMana(
+        _playerAddress?: PromiseOrValue<string> | null,
+        _id?: PromiseOrValue<BigNumberish> | null
+      ): EndTrainingManaEventFilter;
+    };
+  
+    estimateGas: {
+      enterMagicArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      enterMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      enterSecondArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      fightMagicArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      fightMainArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      fightSecondArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      getMagicArena(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getMagicArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMagicArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMainArena(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getMainArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getMainArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getSecondArena(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getTotalLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getTotalWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      leaveMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      openArenas(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftArmor(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftGuitar(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftHelmet(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftSorcerShoes(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftSword(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      craftWizardHat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      getItem(
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getItemCount(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getItems(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "facetAddresses()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "facetAddresses()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "facets()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "facets()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "supportsInterface(bytes4)"(
+        _interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      "supportsInterface(bytes4)"(
+        interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      equipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      equipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      equipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      unequipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      unequipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      unequipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      _getListing(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      crateListing(
+        _id: PromiseOrValue<BigNumberish>,
+        _price: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      purchasePlayer(
+        _listingId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      changeName(
+        _id: PromiseOrValue<BigNumberish>,
+        _newName: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      getBlocktime(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      getPlayer(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getPlayers(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      mint(
+        _name: PromiseOrValue<string>,
+        _uri: PromiseOrValue<string>,
+        _isMale: PromiseOrValue<boolean>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      nameAvailable(
+        _name: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      ownerOf(
+        _id: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      playerCount(overrides?: CallOverrides): Promise<BigNumber>;
+  
+      endQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      endQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      getCooldown(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGemBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGemStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGoldBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getGoldStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      startQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      startQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      openSecondArena(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      endTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      endTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      getCombatStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      getManaStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<BigNumber>;
+  
+      startTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      startTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+  
+      init(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<BigNumber>;
+    };
+  
+    populateTransaction: {
+      enterMagicArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      enterMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      enterSecondArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      fightMagicArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      fightMainArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      fightSecondArena(
+        _challengerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      getMagicArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      getMagicArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getMagicArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getMainArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      getMainArenaLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getMainArenaWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getSecondArena(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      getTotalLosses(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getTotalWins(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      leaveMainArena(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      openArenas(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftArmor(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftGuitar(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftHelmet(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftSorcerShoes(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftSword(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      craftWizardHat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      getItem(
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getItemCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      getItems(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      "diamondCut((address,uint8,bytes4[])[],address,bytes)"(
+        _diamondCut: IDiamond.FacetCutStruct[],
+        _init: PromiseOrValue<string>,
+        _calldata: PromiseOrValue<BytesLike>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facetAddress(bytes4)"(
+        _functionSelector: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facetAddresses()"(
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facetAddresses()"(
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facetFunctionSelectors(address)"(
+        _facet: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "facets()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      "facets()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      "supportsInterface(bytes4)"(
+        _interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      "supportsInterface(bytes4)"(
+        interfaceId: PromiseOrValue<BytesLike>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      equipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      equipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      equipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      unequipBody(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      unequipHead(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      unequipRightHand(
+        _playerId: PromiseOrValue<BigNumberish>,
+        _itemId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      _getListing(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      crateListing(
+        _id: PromiseOrValue<BigNumberish>,
+        _price: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      purchasePlayer(
+        _listingId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      "owner()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      "transferOwnership(address)"(
+        _newOwner: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      changeName(
+        _id: PromiseOrValue<BigNumberish>,
+        _newName: PromiseOrValue<string>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      getBlocktime(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      getPlayer(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getPlayers(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      mint(
+        _name: PromiseOrValue<string>,
+        _uri: PromiseOrValue<string>,
+        _isMale: PromiseOrValue<boolean>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      nameAvailable(
+        _name: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      ownerOf(
+        _id: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      playerCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+  
+      endQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      endQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      getCooldown(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getGemBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getGemStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getGoldBalance(
+        _address: PromiseOrValue<string>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getGoldStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      startQuestGem(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      startQuestGold(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      openSecondArena(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      endTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      endTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      getCombatStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      getManaStart(
+        _playerId: PromiseOrValue<BigNumberish>,
+        overrides?: CallOverrides
+      ): Promise<PopulatedTransaction>;
+  
+      startTrainingCombat(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      startTrainingMana(
+        _tokenId: PromiseOrValue<BigNumberish>,
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+  
+      init(
+        overrides?: Overrides & { from?: PromiseOrValue<string> }
+      ): Promise<PopulatedTransaction>;
+    };
+  }
+  

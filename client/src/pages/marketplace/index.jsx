@@ -1,10 +1,10 @@
-import marketplaceComp from "../../components/marketplace/marketplace";
+import MarketplaceComp from "../../components/marketplace/marketplace";
 
-const Marketplace = ({ players }) => {
+const Marketplace = () => {
   return (
     <div className="w-full">
       <div className=" m-auto w-fit">
-        <marketplaceComp/>
+        <MarketplaceComp/>
       </div>
     </div>
   );

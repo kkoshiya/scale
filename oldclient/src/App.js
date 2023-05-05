@@ -24,6 +24,7 @@ import './App.css'
 // import Profile from "./game/Profile";
 
 import { Map, Profile } from './game';
+import Marketplace from "../../client/src/components/marketplace/marketplace";
 
 function App() {
 
@@ -96,6 +97,9 @@ function App() {
               } />
               <Route path="/leaderboard" element={
                 <LeaderBoard contract={contract} account={account}/>
+              } />
+              <Route path="/marketplace" element={
+                <Marketplace contract={contract} account={account}/>
               } />
               <Route path="/test" element={
                 <Test contract={contract} account={account} extension={extension}/>

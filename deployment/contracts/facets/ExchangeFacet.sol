@@ -156,7 +156,7 @@ contract ExchangeFacet {
     event List(address indexed _from, uint256 indexed _playerId, uint256 _price);
     event Purchase(address indexed _to, uint256 _id);
 
-    function crateListing(uint256 _id, uint256 _price) public {
+    function createListing(uint256 _id, uint256 _price) public {
         ExchangeStorageLib._createListing(_id, _price);
         emit List(msg.sender, _id, _price);
     }
@@ -170,7 +170,7 @@ contract ExchangeFacet {
         return ExchangeStorageLib._getListings(_address);
     }
 
-    function getLisitng(uint256 _listingId) public view returns (address payable seller, uint256 playerId, uint256 price) {
+    function getListing(uint256 _listingId) public view returns (address payable seller, uint256 playerId, uint256 price) {
         return ExchangeStorageLib._getListing(_listingId);
     }
 
