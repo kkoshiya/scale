@@ -8,21 +8,30 @@ export default function Marketplace() {
     const [listings, setListings] = useState([]);
 
     const contract = contractStore((state) => state.diamond);
-      
+    // console.log(contract);
+    let allListings;
     // Call the getAllListings function
-    const gettingAllListings = async () => await contract!.getAllListings();
-    const allListings = gettingAllListings();
-    console.log("All Listings: " + allListings);
+    useEffect(() => {
+        const loadContract = async () => {
+            allListings = await contract.getAllListings();
+            console.log(allListings);
+            // Fetch player details for each listing and store them in the state
+            const playerListings = [];
+            for (const listingObj of allListings) {
+                const listingId = listingObj.toNumber();
+                let { seller, playerId, price } = await contract.getLisitng(listingId);
+                playerId = playerId.toNumber();
+                price = price.toNumber();
+                playerListings.push({ listingId, seller, playerId, price });
+            }
+            setListings(playerListings);
+        };
+        loadContract();
+      }, []);
+    console.log(allListings);
     
-      // Fetch player details for each listing and store them in the state
-      const playerListings = [];
-      for (const listingId of allListings) {
-        const { seller, playerId, price } = contract.getListing(listingId);
-        playerListings.push({ listingId, seller, playerId, price });
-      }
-      setListings(playerListings);
       
-
+      
     return (
     <div>
         <div className="btn-group">

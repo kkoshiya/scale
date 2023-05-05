@@ -1,19 +1,22 @@
 import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import ReactCardFlip from 'react-card-flip';
+import  { contractStore } from "@/store/contractStore";
 
 export default function ListingCard(props) {
   const { listing } = props;
+
+  const { listingId, seller, playerId, price } = listing;
   
   const  [flip, setFlip] = useState(false);
-  const exchangeContract = useContractStore((state) => state.exchange);
+  const contract = contractStore((state) => state.diamond);
   const buyListing = async () => {
-    if (!exchangeContract) return;
+    // TODO: check if enough gold
+    console.log("hit here");
+    if (!contract) return;
 
     try {
-      const tx = await exchangeContract.purchasePlayer(listing.id, {
-        value: ethers.utils.parseEther(listing.price.toString()),
-      });
+      const tx = await contract.purchasePlayer(listingId);
       await tx.wait();
       // Show success message or perform other actions
     } catch (error) {
@@ -21,12 +24,25 @@ export default function ListingCard(props) {
       // Show error message or handle error
     }
   };
-  const playerContract = useContractStore((state) => state.player);
-  const player = playerContract.getPlayer(listing.playerId);
+  const [player, setPlayer] = useState({});
+  let playerObj;
+  
+  useEffect(() => {
+    const loadContract = async () => {
+      playerObj = await contract.getPlayer(playerId);
+      const name = playerObj.name;
+      const player = {};
+      player.name = name;
+      setPlayer(player);
+    };
+    loadContract();
+  }, []);
 
   // TODO: Create modal for create listing AKA sell
 
   return (
+    <div>
+    <button className="btn btn-primary m-6" onClick={buyListing}>Buy Now</button>
   <ReactCardFlip isFlipped={flip} flipDirection="horizontal">
     <div className="front" onClick={()=>setFlip(!flip)}>
       <div tabIndex={0} className="card card-compact w-80 h-102 shadow-xl p-5" data-theme="scroll">
@@ -35,11 +51,11 @@ export default function ListingCard(props) {
         </figure>
         {/* <input type="checkbox" />  */}
         <div className="card-actions justify-end">
-          <button className="btn btn-primary m-6" onClick={buyListing}>Buy Now</button>
+          
         </div>
         <div className="text-xl font-medium card-body" >  
-          <h1 className="card-title" data-theme="scroll">#4124 AXXCAR</h1>
-          <h1>0.001 ETH <span className="text-slate-500">($1.82 USD)</span></h1>
+          <h1 className="card-title" data-theme="scroll">{player.name}</h1>
+          <h1>Gold: {price} </h1>
           
         </div>
       </div>
@@ -66,5 +82,6 @@ export default function ListingCard(props) {
         </div>
       </div>
     </div>
-  </ReactCardFlip>);
+  </ReactCardFlip>
+  </div>);
 }
